@@ -1,0 +1,157 @@
+/* Import Titillium Web */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
+
+.navbar {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: rgba(1, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+/* Ligne du haut */
+.navbar-top {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-logo {
+  height: 60px;
+  filter: none !important;
+  box-shadow: none !important;
+   content: none;
+}
+
+.nav-icon {
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+}
+.profile-icon {
+  font-size: 2rem; /* plus grand que les autres icônes */
+}
+
+
+/* Ligne du bas : Menu principal */
+.navbar-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 40px;
+  
+}
+/* Wrapper autour du menu pour la bordure */
+.navbar-menu-wrapper {
+  border-top: 1px solid rgb(57, 54, 54);     /* ligne du haut */
+  border-left: 1px solid rgb(57, 54, 54);    /* ligne gauche */
+  border-right: 1px solid rgb(57, 54, 54);   /* ligne droite */
+  border-bottom: none;             /* ligne du bas invisible */
+  border-radius: 20px 20px 0 0;     /* coins arrondis en haut seulement */
+  padding: 5px 30px;         /* espace intérieur */
+  display: flex;
+  justify-content: space-between;   /* centre le menu à l'intérieur du wrapper */
+  margin-top: 20px;          /* si tu veux conserver l'espace en haut */
+  width: 100%;        /* largeur juste du menu */
+  box-sizing: border-box;    /* inclure padding dans la largeur */
+  background:rgb(9, 9, 9) ;         /* fond transparent */
+  
+}
+
+
+.menu-left a,
+.menu-right a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 100;
+  margin-right: 20px;
+  padding-bottom: 8px; /* ⬅️ crée de l’espace pour le trait */
+
+
+  display: inline-block; /* ✅ OBLIGATOIRE */
+  position: relative; /* nécessaire pour que le :after fonctionne correctement */
+}
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;         /* espace entre les liens */
+  margin-left: 0px; /* décale tout le menu de gauche vers la droite */
+}
+
+.menu-left a:hover,
+.menu-right a:hover {
+  opacity: 0.7;
+}
+
+
+/* ----------------- RESPONSIVE ----------------- */
+@media screen and (max-width: 1024px) {
+  .navbar-top,
+  .navbar-menu {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .menu-left,
+  .menu-right {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .nav-icon {
+    font-size: 1.2rem;
+  }
+  .profile-icon {
+    font-size: 1.8rem;
+  }
+  .navbar-menu a {
+    font-size: 0.85rem;
+    margin-right: 15px;
+  }
+}
+/* Lien actif avec trait rouge */
+.navbar-menu a.active {
+  position: relative;
+
+}
+.navbar-menu a.active {
+  color: rgb(136, 4, 4);
+  font-weight: 600;
+}
+
+
+
+.navbar-menu a.active {
+  color: red !important;
+}
+

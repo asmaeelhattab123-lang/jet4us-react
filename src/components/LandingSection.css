@@ -1,0 +1,15 @@
+.landing-section {
+  width: 100%;
+  background-color: #000; /* fond noir global */
+  margin: 0;
+  padding: 0;             /* ❗ aucun espace */
+  min-height: auto;
+  display: block;         /* pas de centrage forcé */
+}
+
+.landing-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  display: none;          /* ❗ caché tant que vide */
+}

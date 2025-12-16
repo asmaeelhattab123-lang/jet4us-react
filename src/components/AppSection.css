@@ -1,0 +1,90 @@
+/* Import Titillium Web */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
+
+.app-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* contenu texte à droite */
+  padding: 80px 40px;
+  gap: 50px;
+  background-image: url('../assets/sombrejet.png'); /* ton image en background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: 'Titillium Web', sans-serif;
+  min-height: 500px; /* ajustable selon l’image */
+}
+
+.app-content {
+  max-width: 600px;
+  background: rgba(0,0,0,0.55); /* léger overlay pour lisibilité */
+  padding: 30px;
+  border-radius: 20px;
+   margin-left: 10px; /* décale vers la gauche si nécessaire */
+}
+
+.app-content h2 {
+  color: red;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.app-content p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+.app-image img {
+  width: 450px;    /* ajuste la largeur */
+  height: auto;    /* garde les proportions */
+  border-radius: 10px; /* optionnel, arrondir les coins */
+  margin-right: 100px; /* espace entre image et texte, ajuste selon besoin */
+}
+
+.app-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.app-buttons a {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: white;
+  background-color: #514f4f;
+  transition: 0.3s;
+}
+.app-buttons .app-store {
+  margin-left: 50px; /* décale uniquement le bouton App Store vers la droite */
+}
+
+.app-buttons a:hover {
+  background-color: #333;
+}
+
+.app-buttons .icon {
+  font-size: 1.2rem;
+}
+
+/* ------------------ Responsive ------------------ */
+@media screen and (max-width: 768px) {
+  .app-section {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .app-content {
+    max-width: 90%;
+    padding: 20px;
+  }
+  .app-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

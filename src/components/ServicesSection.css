@@ -1,0 +1,79 @@
+.services-section {
+  width: 100%;
+  background-color: #000;
+  padding: 80px 0;
+  position: relative;
+}
+.services-section {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+/* trait rouge */
+.section-separator {
+  width: 400px;
+  height: 1px;
+  background-color: #c40000;
+  margin: 0 auto 60px auto;
+  opacity: 0.9;
+}
+
+/* container principal */
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* texte */
+.services-text {
+  flex: 1;
+  color: white;
+}
+
+.services-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #c40000; /* rouge luxe */
+}
+
+.services-text p {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  opacity: 0.85;
+  margin-bottom: 15px;
+}
+
+.services-text .highlight {
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* image */
+.services-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.services-image img {
+  width: 80%;
+  max-width: 480px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .services-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .services-image {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,82 @@
+.hero {
+  position: relative;
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.2)
+  );
+}
+
+.hero-content {
+  position: relative;
+  max-width: 900px;
+  padding: 0 60px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 500; /* Si tu veux gras, sinon 400 pour normal */
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.hero-search {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.hero-search input {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: 30px;
+  font-size: 1rem;
+  background: #6d6b6b;
+  border: 1px solid #bcbcbc; /* bordure rouge visible */
+  font-size: 1rem;
+  color: rgb(203, 197, 197); /* texte en blanc */
+  outline: none; /* enlève la bordure de focus par défaut */
+}
+.hero-search input::placeholder {
+  color: #ccc; /* couleur du texte placeholder */
+}
+
+@media screen and (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 2rem; /* Texte plus petit sur petit écran */
+  }
+}
+.hero-separator {
+  position: absolute;
+  bottom: 0;                 /* collé en bas de la photo */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;              /* pas full width */
+  height: 1px;               /* très fin */
+  background-color: #c40000; /* rouge luxe */
+  opacity: 0.9;
+  box-shadow: 0 0 6px rgba(196, 0, 0, 0.6);
+}
+
