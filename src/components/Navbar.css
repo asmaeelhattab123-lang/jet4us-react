@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   z-index: 100;
-  background: rgba(1, 0, 0, 0.25);
+  background: hsl(253, 38%, 9%); /* fond opaque identique à ton menu */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,7 +76,7 @@
   margin-top: 20px;          /* si tu veux conserver l'espace en haut */
   width: 100%;        /* largeur juste du menu */
   box-sizing: border-box;    /* inclure padding dans la largeur */
-  background:hsl(253, 38%, 9%) ;         /* fond transparent */
+  background:hsl(0, 0%, 0%) ;         /* fond transparent */
   
 }
 
