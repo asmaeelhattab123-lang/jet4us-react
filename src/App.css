@@ -42,7 +42,7 @@
 }
 /* Fond global noir */
 body, #root {
-  background-color: #000; /* noir */
+  background-color: #020202; /* noir */
   margin: 0;
   padding: 0;
   font-family: 'Titillium Web', sans-serif; /* si tu veux la même police que navbar */

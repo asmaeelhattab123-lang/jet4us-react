@@ -1,0 +1,10 @@
+.bookjet {
+  min-height: 100vh;
+  background: url("/jet-interior.jpg") center/cover no-repeat;
+  color: #fff;
+}
+
+.bookjet .overlay {
+  background: rgba(0,0,0,0.6);
+  padding: 120px 80px;
+}

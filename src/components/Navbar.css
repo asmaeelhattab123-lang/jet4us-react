@@ -68,7 +68,7 @@
   border-top: 1px solid rgb(57, 54, 54);     /* ligne du haut */
   border-left: 1px solid rgb(57, 54, 54);    /* ligne gauche */
   border-right: 1px solid rgb(57, 54, 54);   /* ligne droite */
-  border-bottom: none;             /* ligne du bas invisible */
+  border-bottom:  1px solid rgb(36, 33, 33);   /* ligne droite */;             /* ligne du bas invisible */
   border-radius: 20px 20px 0 0;     /* coins arrondis en haut seulement */
   padding: 5px 30px;         /* espace intérieur */
   display: flex;
@@ -76,7 +76,7 @@
   margin-top: 20px;          /* si tu veux conserver l'espace en haut */
   width: 100%;        /* largeur juste du menu */
   box-sizing: border-box;    /* inclure padding dans la largeur */
-  background:rgb(9, 9, 9) ;         /* fond transparent */
+  background:hsl(253, 38%, 9%) ;         /* fond transparent */
   
 }
 

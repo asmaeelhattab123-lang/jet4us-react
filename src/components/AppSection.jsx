@@ -1,7 +1,7 @@
 // src/components/AppSection.jsx
 import React from "react";
 import "./AppSection.css"; // ton CSS existant
-import appImage from "../assets/Jet4usapp.png"; // image de l'application
+import appImage from "../assets/Jet4usapp1.png"; // image de l'application
 import { FaGooglePlay, FaApple } from "react-icons/fa";
 
 export default function AppSection() {

@@ -23,7 +23,9 @@ export default function App() {
   return (
     <AuthProvider>
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      {renderPage()}
+      <main className="display">
+        {renderPage()}
+      </main>
     </AuthProvider>
   );
 }
