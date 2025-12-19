@@ -1,12 +1,12 @@
 .flynow {
-  padding: 150px;
+  padding: 110px;
   font-family: 'Titillium Web', sans-serif;
 }
 
 .flynow-title {
   font-size: 2rem;
   margin-bottom: 20px;
-  margin-left: -1200px;
+  margin-left: -1155px;
 }
 
 .flynow-top {
@@ -19,7 +19,7 @@
 .flynow-desc {
   width: 50%;
   font-size: 1.1rem;
-  margin-left: -80px;
+  margin-left: -25px;
 }
 
 .flynow-search {

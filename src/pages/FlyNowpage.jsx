@@ -39,7 +39,6 @@ const flights = [
     arrivalCity: "Tangier",
     company: "JetStream",
     price: "$315.75",
-    
   },
   {
     id: 4,

@@ -10,7 +10,7 @@
    HERO
 ========================= */
 .bookseat-hero {
-  margin-top: 110px;
+  margin-top: 40px;
   padding: 80px 60px;
   background-image: linear-gradient(
       rgba(0,0,0,0.55),
@@ -118,11 +118,9 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
-
-/* =========================
-   CARD (IDENTIQUE FLY NOW)
-========================= */
 .flight-card {
+  display: flex;
+  flex-direction: column; /* 🔥 image en haut */
   background-color: hsl(253, 38%, 9%);
   color: white;
   border-radius: 10px;
@@ -130,37 +128,40 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* =========================
-   IMAGE
-========================= */
+/* IMAGE EN HAUT – PLEINE LARGEUR */
 .flight-image {
+  width: 100%;
+  height: 180px;
   position: relative;
 }
 
 .flight-image img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-/* DATE CENTRÉE */
+/* DATE CENTRÉE SUR IMAGE */
 .flight-date {
   position: absolute;
-  bottom: 10px;
+  top: 12px;              /* 🔥 plus en haut */
   left: 50%;
   transform: translateX(-50%);
-  background: transparent;
-  font-size: 14px;
+  background: rgba(0,0,0,0.5);
   color: #fff;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
-/* =========================
-   INFO
-========================= */
+/* INFOS EN BAS */
 .flight-info {
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-
 .flight-route {
   display: flex;
   justify-content: space-between;
@@ -173,32 +174,14 @@
   text-align: center;
 }
 
-.flight-route span {
-  font-size: 13px;
-  color: #aaa;
-}
-
-/* SYMBOLE ROUTE */
 .flight-line {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #4CAF50;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* =========================
-   SEPARATOR (COMME FLY NOW)
-========================= */
-.flight-separator {
-  border: 0;
-  border-top: 0.5px solid;
-  margin: 10px 0;
-}
-
-/* =========================
-   FOOTER
-========================= */
 .flight-footer {
   display: flex;
   justify-content: space-between;
@@ -208,25 +191,25 @@
   padding-top: 10px;
 }
 
-/* Couleur separator selon status */
-.flight-footer.open::before,
 .flight-footer.confirmed::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  border-top: 0.5px solid;
+  border-top: 0.5px solid green;
 }
 
 .flight-footer.open::before {
-  border-color: orange;
-}
-
-.flight-footer.confirmed::before {
-  border-color: green;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-top: 0.5px solid orange;
 }
 
 .price {
   color: #fff;
 }
+
