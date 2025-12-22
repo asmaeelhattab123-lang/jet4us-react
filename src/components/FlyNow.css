@@ -3,19 +3,19 @@
   padding: 100px 0;
   color: white;
   overflow: hidden;
-  padding-top: 2px; /* réduit l'espace en haut pour remonter le contenu */
+  padding-top: 30px; /* réduit l'espace en haut pour remonter le contenu */
   position: relative; /* permet aux éléments internes de se positionner par rapport à cette section */
 }
 
-.flynow-title {
-  font-size: 2.8rem;
-  margin-top: 5px; /* ajuste ici pour rapprocher du trait */
-  margin-bottom: 90px;
-  font-weight: 600;
-  text-align: center;          /* centre horizontalement le texte */
-  z-index: 1000; /* pour qu’il soit devant le trait */
-  color: #a60404;             /* couleur rouge par exemple, à changer selon ton choix */
+/* Styles spécifiques pour Fly Now de la Home Page */
+.flynow-home .flynow-title {
+  font-size: 2.5rem;
+  margin: 5px 0 90px 0;   /* marge en haut et bas */
+  font-weight: 500;
+  text-align: center;      /* centre le texte dans la section */
+  color:#c40000;          /* couleur rouge */
 }
+
 @media screen and (max-width: 768px) {
   .flynow-title {
     margin-top: -10px; /* ajuste pour petit écran */
@@ -25,6 +25,45 @@
 .flynow-carousel {
   overflow: hidden;
   width: 100%;
+}
+.custom-next,
+.custom-prev {
+  width: 40px;
+  height: 40px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  color: rgb(185, 3, 3);
+  font-size: 70px; /* grosse flèche */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Le truc clé : masquer ::after et mettre le contenu dans le cercle */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: none; /* 🔥 supprime le texte injecté par Swiper */
+}
+
+/* Déplacer uniquement le contenu du cercle */
+.custom-next span,
+.custom-prev span {
+  transform: translateY(-8%); /* ajuste ici la flèche */
+  display: block;
+}
+
+
+.custom-next { right: 10px; }
+.custom-prev { left: 10px; }
+
+
+/* Optionnel : ajuster la taille du slide pour swiper */
+.flynow-slide {
+  width: 250px; /* ou auto selon design */
 }
 
 .flynow-track {

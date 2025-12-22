@@ -7,6 +7,8 @@ html, body {
   min-height: 100%;
   margin: 0;
   padding: 0;
+   overflow-x: hidden; /* supprime scroll horizontal */
+  overflow-y: auto;   /* garde scroll vertical */
 }
 
 #root {

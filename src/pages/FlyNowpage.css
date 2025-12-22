@@ -3,12 +3,13 @@
   font-family: 'Titillium Web', sans-serif;
 }
 
-.flynow-title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  margin-left: -1155px;
+.flynow-menu .flynow-title {
+  font-size: 32px;   /* taille du titre */
+  font-weight: 700;    /* normal, pas gras */
+  text-align: center;  /* centré horizontalement dans la section */
+  margin: 0px 0 30px -1150px; /* marge haut et bas */
+  color: #a60404;      /* rouge */
 }
-
 .flynow-top {
   display: flex;
   justify-content: space-between;
@@ -49,6 +50,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding: 0 20px; /* un petit padding pour que les flèches n’écrasent pas les cards */
 }
 
 .flynow-card {
@@ -57,11 +61,17 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  
 }
 
 .flight-photo {
   position: relative;
+}
+.flynow-slide {
+  width: auto !important;
+}
+
+.flynow-card {
+  flex-shrink: 0;
 }
 
 .flight-photo img {
@@ -70,13 +80,51 @@
   object-fit: cover;
 }
 
-.flight-date {
-  position: center;
-  top: 182px;
+/* Date centrée par rapport au jet et route-symbol */
+.route-symbol-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flight-date-text {
+  position: absolute;
+  top: 0%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  line-height: 1;
+  z-index: 2;
+}
+
+/* Type de vol en haut à gauche */
+.flight-type-overlay {
+  position: absolute;
+  top: 10px;
   left: 10px;
-  background-color:transparent;
-  padding: 4px 8px;
-  border-radius: 4px;
+  background-color: rgba(37, 106, 20, 0.8);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Type de jet en haut à droite */
+.flight-jet-overlay {
+  position: absolute;
+  top: 150px;
+  right: 0px;
+  background-color: rgba(0,0,0,0.6);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  font-style: italic;
+  font-weight: 600; /* semi-bold */
 }
 
 .flight-info {
@@ -95,13 +143,47 @@
   text-align: center;
 }
 
-.route-symbol {
-  font-size: 0.7rem;
-  color: #4CAF50;
+.flynow-route-symbol {
+  font-size: 1.2rem;
+  color: #939292;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 4px; /* espace réduit entre jet et points */
 }
+
+.flynow-jet-symbol {
+  font-family: "Segoe UI Symbol", "Noto Emoji", sans-serif;
+  display: inline-block;
+  font-size: 37px;       /* taille souhaitée */
+  color: red;
+  line-height: 1;
+  transform: translateY(0px); /* ajustement vertical */
+}
+
+.flynow-dots {
+  font-size: 18px;
+  color: #999;
+}
+
+.flynow-route-symbol-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flynow-flight-date-text {
+  position: absolute;
+  top: -15px;      /* ajuste selon ton besoin */
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  z-index: 2;
+}
+
 
 .flight-separator {
   border: 0;
@@ -114,4 +196,159 @@
   justify-content: space-between;
   font-weight: 600;
   font-size: 1rem;
+}
+
+.seat-icon img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  position: relative;
+  top: 0px;
+}
+.seat-count {
+  color: white;
+  font-weight: 600;
+   font-size: 1rem; /* augmente légèrement la taille de tout le seat-count */
+}
+
+.seat-count .available {
+  color: #4CAF50; /* vert pour les sièges disponibles */
+  font-weight: 600;
+   font-size: 1rem; /* augmente légèrement la taille de tout le seat-count */
+}
+
+.flight-footer .price {
+  font-weight: normal;
+}
+
+/* ------------------ Responsive FlyNow corrigé ------------------ */
+
+/* Tablette + petits écrans (<1024px) */
+@media screen and (max-width: 1024px) {
+  .flynow {
+    padding: 60px 40px;
+  }
+
+  .flynow-menu .flynow-title {
+    text-align: center; /* centré horizontalement */
+    margin-left: 0;     /* annule le margin-left négatif */
+  }
+
+  .flynow-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .flynow-desc {
+    width: 90%;
+    font-size: 1rem;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .flynow-search {
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .flynow-search input, .flynow-search button {
+    width: auto;
+    flex: 1 0 auto;
+  }
+
+  .flynow-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .flight-photo img {
+    height: 200px;
+  }
+
+  .flight-info {
+    padding: 10px;
+  }
+
+  .flight-footer {
+    font-size: 0.95rem;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Mobile (<768px) */
+@media screen and (max-width: 768px) {
+  .flynow {
+    padding: 150px 20px;
+  }
+
+  .flynow-title {
+    font-size: 1.5rem;
+  }
+
+  .flynow-desc {
+    font-size: 0.95rem;
+  }
+
+  .flynow-search {
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .flynow-search input, .flynow-search button {
+    flex: 1 0 auto;
+  }
+
+  .flight-photo img {
+    height: 180px;
+  }
+
+  .flight-footer {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile très petit (<480px) */
+@media screen and (max-width: 480px) {
+  .flynow {
+    padding: 30px 15px ;
+  }
+
+  .flynow-title {
+    font-size: 1.3rem;
+  }
+
+  .flynow-desc {
+    font-size: 0.9rem;
+  }
+
+  .flynow-search input, .flynow-search button {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .flight-photo img {
+    height: 150px;
+  }
+
+  .flight-footer {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
 }

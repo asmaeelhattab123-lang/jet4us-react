@@ -4,28 +4,28 @@
 .app-section {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* contenu texte à droite */
+  justify-content: flex-end; /* texte à droite */
   padding: 80px 40px;
   gap: 50px;
-  background-image: url('../assets/sombrejet.png'); /* ton image en background */
+  background-image: url('../assets/sombrejet.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: white;
   font-family: 'Titillium Web', sans-serif;
-  min-height: 500px; /* ajustable selon l’image */
+  min-height: 500px;
 }
 
 .app-content {
   max-width: 600px;
-  background: rgba(0,0,0,0.55); /* léger overlay pour lisibilité */
+  background: rgba(0,0,0,0.55);
   padding: 30px;
   border-radius: 20px;
-   margin-left: 10px; /* décale vers la gauche si nécessaire */
+  margin-left: 10px;
 }
 
 .app-content h2 {
-  color: red;
+  color: #c40000;
   font-size: 2rem;
   margin-bottom: 20px;
 }
@@ -36,22 +36,24 @@
   opacity: 0.85;
   line-height: 1.5;
 }
+
 .app-image img {
-  width: 450px;    /* ajuste la largeur */
-  height: auto;    /* garde les proportions */
-  border-radius: 10px; /* optionnel, arrondir les coins */
-  margin-right: 100px; /* espace entre image et texte, ajuste selon besoin */
+  width: 360px;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 100px; /* espace avec le texte */
 }
 
 .app-buttons {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap; /* permet aux boutons de passer à la ligne sur mobile */
 }
 
 .app-buttons a {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   padding: 12px 20px;
   border-radius: 10px;
   font-size: 0.95rem;
@@ -60,8 +62,10 @@
   background-color: #514f4f;
   transition: 0.3s;
 }
-.app-buttons .app-store {
-  margin-left: 50px; /* décale uniquement le bouton App Store vers la droite */
+
+.app-buttons .app-store,
+.app-buttons .play-store {
+  margin-left: 0; /* pas de décalage, géré par gap */
 }
 
 .app-buttons a:hover {
@@ -73,18 +77,64 @@
 }
 
 /* ------------------ Responsive ------------------ */
+@media screen and (max-width: 1024px) {
+  .app-section {
+    padding: 60px 30px;
+    gap: 30px;
+  }
+
+  .app-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .app-content p {
+    font-size: 0.95rem;
+  }
+
+  .app-image img {
+    width: 300px;
+    margin-right: 20px;
+  }
+
+  .app-buttons {
+    gap: 15px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .app-section {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    padding: 40px 20px;
   }
+
   .app-content {
     max-width: 90%;
     padding: 20px;
+    margin-left: 0;
+    margin-bottom: 20px;
   }
+
+  .app-image img {
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+  }
+
   .app-buttons {
     justify-content: center;
     flex-wrap: wrap;
+    gap: 15px; /* réduit l'espace entre les boutons sur mobile */
+  }
+
+  .app-buttons a {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+  }
+
+  .app-buttons .icon {
+    font-size: 1rem;
   }
 }

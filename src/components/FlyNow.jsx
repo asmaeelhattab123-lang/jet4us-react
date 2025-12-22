@@ -1,7 +1,15 @@
 import "./FlyNow.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+
 import london from "../assets/offers/londre.png";
 import paris from "../assets/offers/paris.png";
 import rome from "../assets/offers/rome.png";
+import madrid from "../assets/offers/madrid.png";
+import dubai from "../assets/offers/dubai.png";
+import lagos from "../assets/offers/lagos.png";
 
 const flights = [
   {
@@ -25,17 +33,62 @@ const flights = [
     to: "Ibiza",
     price: "$8,200 per seat",
   },
+  {
+    id: 4,
+    image: madrid,
+    from: "Madrid",
+    to: "Rabat",
+    price: "$8,200 per seat",
+  },
+  {
+    id: 5,
+    image: dubai,
+    from: "Dubai",
+    to: "Casablanca",
+    price: "$8,200 per seat",
+  },
+  {
+    id: 6,
+    image: lagos,
+    from: "Lgos",
+    to: "Ibiza",
+    price: "$8,200 per seat",
+  },
+  {
+    id: 7,
+    image: paris,
+    from: "Paris",
+    to: "Madrid",
+    price: "$8,200 per seat",
+  },
+  {
+    id: 8,
+    image: rome,
+    from: "Rabat",
+    to: "Rome",
+    price: "$8,200 per seat",
+  },
 ];
 
 export default function FlyNow() {
   return (
-    <section className="flynow-section">
+    <section className="flynow-section flynow-home">
       <h2 className="flynow-title">Fly now</h2>
 
-      <div className="flynow-carousel">
-        <div className="flynow-track">
-          {[...flights, ...flights].map((flight, index) => (
-            <div className="flynow-card" key={index}>
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={20}
+        slidesPerView="auto"
+        loop={false}
+        navigation={{
+          nextEl: ".custom-next",
+          prevEl: ".custom-prev",
+        }}
+        className="flynow-carousel"
+      >
+        {flights.map((flight) => (
+          <SwiperSlide key={flight.id} className="flynow-slide">
+            <div className="flynow-card">
               <div
                 className="flynow-image"
                 style={{ backgroundImage: `url(${flight.image})` }}
@@ -47,9 +100,14 @@ export default function FlyNow() {
                 <p className="price">{flight.price}</p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </SwiperSlide>
+        ))}
+
+        {/* Flèches custom */}
+       <div className="custom-prev"><span>‹</span></div>
+       <div className="custom-next"><span>›</span></div>
+
+      </Swiper>
     </section>
   );
 }

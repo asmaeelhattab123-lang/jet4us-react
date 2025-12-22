@@ -54,7 +54,7 @@
 }
 
 .bookseat-search button {
-  background: #6e0101;
+  background: #3c3b3b;
   color: #fff;
   border: none;
   width: 50px;
@@ -62,6 +62,16 @@
   border-radius: 50%;
   font-size: 18px;
   cursor: pointer;
+}
+.search-btn:active {
+  background-color: #ad0303;  /* bouton devient gris foncé au clic */
+}
+
+.bookseat-search-icon {
+  font-size: 1.1rem;   /* taille spécifique à BookSeat */
+  color: #bab9b9;      /* couleur spécifique */
+  cursor: pointer;
+  margin-left: 0px;   /* espace si besoin */
 }
 
 /* =========================
@@ -90,8 +100,8 @@
 
 /* Open actif */
 .tabs button:first-child.active {
-  color: orange;
-  border-bottom: 2px solid orange;
+  color:rgba(225, 101, 6, 0.787);
+  border-bottom: 2px solid rgba(225, 101, 6, 0.787);
 }
 
 /* Confirmed actif */
@@ -117,7 +127,29 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+.flight-type-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+.flight-type-overlay.open {
+  background-color: rgba(225, 101, 6, 0.787); /* open flight = orange */
+  color: #fff;
+}
+
+.flight-type-overlay.confirmed {
+  background-color:rgba(37, 106, 20, 0.8);  /* confirmed flight = vert */
+  color: #fff;
+}
+
 .flight-card {
   display: flex;
   flex-direction: column; /* 🔥 image en haut */
@@ -126,6 +158,8 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+   padding-left: 5px;     /* espace à gauche de la grille */
+  padding-right: 5px;    /* espace à droite de la grille */
 }
 
 /* IMAGE EN HAUT – PLEINE LARGEUR */
@@ -142,18 +176,15 @@
   display: block;
 }
 
-/* DATE CENTRÉE SUR IMAGE */
-.flight-date {
+.flight-date-text {
   position: absolute;
-  top: 12px;              /* 🔥 plus en haut */
+  top: -16px;          /* ← ajuste ici : -12 / -15 / -20 */
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  font-size: 14px;
-  padding: 4px 8px;
-  border-radius: 6px;
+  line-height: 1;
+  white-space: nowrap;
 }
+
 
 /* INFOS EN BAS */
 .flight-info {
@@ -190,26 +221,280 @@
   position: relative;
   padding-top: 10px;
 }
+.route-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: -2px; /* espace réduit entre jet et points */
+}
+.route-symbol .jet-symbol {
+  font-family: 'Titillium Web', sans-serif; /* ou la police de Book Seat */
+  display: inline-block;       /* obligatoire */
+  font-size: 37px;             /* taille souhaitée */
+  color: red;
+  line-height: 1;
+  position: relative;          /* nécessaire pour translateY */
+  transform: translateY(-10px); /* remonte le jet de 30px */
+}
 
-.flight-footer.confirmed::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+
+/* Points */
+.route-symbol .dots {
+  font-size: 18px;   /* taille des points */
+  color: #999;
+  margin: 0; /* supprime les marges par défaut */
+}
+
+/* Réduire la taille de l'image des sièges */
+.flight-footer img {
+  width: 18px;   /* avant : 24px ou 20px */
+  height: 18px;
+}
+
+
+.flight-separator.open {
+  border-top: 0.5px solid rgba(225, 101, 6, 0.787);
+}
+
+.flight-separator.confirmed {
   border-top: 0.5px solid green;
 }
 
 .flight-footer.open::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  border-top: 0.5px solid orange;
+   display: none; /* <- supprime le trait orange en double */
+}
+.seats {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: #fff; /* couleur par défaut pour le total */
+}
+
+.seats .available {
+  color: #4CAF50; /* vert pour le nombre de sièges disponibles */
+}
+
+.seats .total {
+  color: #fff; /* blanc pour le total */
+}
+
+.seat-icon {
+  width: 18px;
+  height: 18px;
+  position: relative;  /* permet le décalage */
+  top: -2px;           /* remonte de 2px, ajuste selon ton besoin */
 }
 
 .price {
   color: #fff;
 }
+/* =========================
+   Responsive BookSeat stable
+========================= */
 
+/* Tablette + petits écrans (<1024px) */
+@media screen and (max-width: 1024px) {
+  .bookseat-page {
+    padding: 30px 40px;
+  }
+
+  .bookseat-hero {
+    padding: 60px 40px;
+    min-height: 250px; /* garantit titre visible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bookseat-title {
+    font-size: 28px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+  }
+
+  .bookseat-desc {
+    font-size: 1rem;
+    max-width: 90%;
+    margin: 0 auto 40px auto;
+    text-align: center;
+  }
+
+  .bookseat-search {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: nowrap; /* From/To/Search sur une ligne */
+  }
+
+  .bookseat-search input {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .bookseat-search button {
+    flex: 0 0 auto;
+  }
+
+  .bookseat-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .tabs {
+    transform: translateX(0);
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .create-flight {
+    margin-left: 0;
+    align-self: center;
+  }
+
+  .bookseat-list {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .flight-image img {
+    height: 160px;
+  }
+
+  .flight-footer {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Mobile (<768px) */
+@media screen and (max-width: 768px) {
+  .bookseat-page {
+    padding: 20px 20px;
+  }
+
+  .bookseat-hero {
+    padding: 50px 20px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bookseat-title {
+    font-size: 24px;
+    margin: 50px auto 15px auto;
+  }
+
+  .bookseat-desc {
+    font-size: 0.95rem;
+  }
+
+  .bookseat-search {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .bookseat-search input {
+    flex: 1 0 auto;
+     width: 200px; /* largeur réduite pour mobile */
+  }
+
+  .bookseat-search button {
+    flex: 0 0 50px;
+  }
+
+ .bookseat-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(auto, auto)); /* cartes gardent leur largeur naturelle */
+    gap: 15px;
+    justify-content: center;   /* centre toute la grille horizontalement */
+    justify-items: center;     /* centre chaque carte individuellement */
+  }
+  .flight-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .flight-image img {
+    height: 150px;
+  }
+
+  .flight-footer {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile très petit (<480px) */
+@media screen and (max-width: 480px) {
+  .bookseat-page {
+    padding: 15px 10px;
+  }
+
+  .bookseat-hero {
+    padding: 40px 10px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bookseat-title {
+    font-size: 20px;
+    margin: 0 auto 10px auto;
+  }
+
+  .bookseat-desc {
+    font-size: 0.9rem;
+  }
+
+  .bookseat-search {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .bookseat-search input {
+    flex: 1 0 120px;
+  }
+
+  .bookseat-search button {
+    flex: 0 0 45px;
+  }
+
+  .bookseat-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(auto, auto)); /* cartes gardent leur largeur naturelle */
+    gap: 15px;
+    justify-content: center;   /* centre toute la grille horizontalement */
+    justify-items: center;     /* centre chaque carte individuellement */
+  }
+  .flight-card {
+    width: 100%;
+    max-width: 100%;
+  }
+  .flight-image img {
+    height: 130px;
+  }
+
+  .flight-footer {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+}

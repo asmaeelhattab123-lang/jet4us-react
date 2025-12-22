@@ -6,6 +6,8 @@ import rabat from "../assets/bookseat/rabat.png";
 import dubai from "../assets/bookseat/dubai1.png";
 import barcelone from "../assets/bookseat/barcelone.png";
 import rome from "../assets/bookseat/rome1.png";
+import seatIcon from "../assets/seats.svg";
+import { FaSearch } from 'react-icons/fa';
 
 export default function BookSeat() {
   const [activeTab, setActiveTab] = useState("open");
@@ -15,7 +17,6 @@ export default function BookSeat() {
   const [toSuggestions, setToSuggestions] = useState([]);
   const [displayedFlights, setDisplayedFlights] = useState(null);
 
-  // Liste complète des villes et aéroports
   const locations = [
     { name: "Marrakech", type: "city" },
     { name: "Paris", type: "city" },
@@ -29,33 +30,27 @@ export default function BookSeat() {
     { name: "JFK", type: "airport" },
     { name: "Narita", type: "airport" },
     { name: "Madrid Barajas", type: "airport" },
-    // Ajouter d'autres si besoin
   ];
 
-  // Vols originaux (3 open + 3 confirmed)
   const flightsData = [
-    { id: 1, image: marrakech, date: "24.12.2025", fromTime: "19:45", fromCity: "Marrakech", toTime: "23:00", toCity: "London", duration: "3h 15min", seatsLeft: 4, seatsTotal: 7, price: "50.00 USD", status: "open" },
-    { id: 2, image: rabat, date: "19.12.2025", fromTime: "06:30", fromCity: "Paris", toTime: "09:30", toCity: "Rabat", duration: "3h 00min", seatsLeft: 8, seatsTotal: 12, price: "31.66 USD", status: "confirmed" },
-    { id: 3, image: dubai, date: "24.12.2025", fromTime: "19:45", fromCity: "Dubai", toTime: "23:00", toCity: "Madrid", duration: "3h 15min", seatsLeft: 4, seatsTotal: 7, price: "50.00 USD", status: "open" },
-    { id: 4, image: barcelone, date: "19.12.2025", fromTime: "06:30", fromCity: "Barcelona", toTime: "09:30", toCity: "Paris", duration: "3h 00min", seatsLeft: 8, seatsTotal: 12, price: "31.66 USD", status: "confirmed" },
-    { id: 5, image: rabat, date: "02.01.2026", fromTime: "14:10", fromCity: "Rabat", toTime: "18:40", toCity: "Madrid", duration: "4h 30min", seatsLeft: 6, seatsTotal: 10, price: "42.00 USD", status: "open" },
-    { id: 6, image: paris, date: "08.01.2026", fromTime: "09:00", fromCity: "Rabat", toTime: "12:15", toCity: "Paris", duration: "3h 15min", seatsLeft: 2, seatsTotal: 8, price: "68.00 USD", status: "confirmed" },
+    { id: 1, image: marrakech, date: "24.12.2025", fromTime: "19:45", fromCity: "Marrakech", toTime: "23:00", toCity: "London", duration: "3h 15min", seatsLeft: 4, seatsTotal: 7, price: "50.00 USD", status: "open", type: "One way", jet: "Hawker 800 XPI", company: "Equajet" },
+    { id: 2, image: rabat, date: "19.12.2025", fromTime: "06:30", fromCity: "Paris", toTime: "09:30", toCity: "Rabat", duration: "3h 00min", seatsLeft: 8, seatsTotal: 12, price: "31.66 USD", status: "confirmed", type: "One way", jet: "Gulfstream G550", company: "SkyFly" },
+    { id: 3, image: dubai, date: "24.12.2025", fromTime: "19:45", fromCity: "Dubai", toTime: "23:00", toCity: "Madrid", duration: "3h 15min", seatsLeft: 4, seatsTotal: 7, price: "50.00 USD", status: "open", type: "One way", jet: "Hawker 900XP", company: "SkyFly" },
+    { id: 4, image: barcelone, date: "19.12.2025", fromTime: "06:30", fromCity: "Barcelona", toTime: "09:30", toCity: "Paris", duration: "3h 00min", seatsLeft: 8, seatsTotal: 12, price: "31.66 USD", status: "confirmed", type: "One way", jet: "Gulfstream G650", company: "SkyFly" },
+    { id: 5, image: rabat, date: "02.01.2026", fromTime: "14:10", fromCity: "Rabat", toTime: "18:40", toCity: "Madrid", duration: "4h 30min", seatsLeft: 6, seatsTotal: 10, price: "42.00 USD", status: "open", type: "One way", jet: "Cessna Citation XLS+", company: "JetStream" },
+    { id: 6, image: paris, date: "08.01.2026", fromTime: "09:00", fromCity: "Rabat", toTime: "12:15", toCity: "Paris", duration: "3h 15min", seatsLeft: 2, seatsTotal: 8, price: "68.00 USD", status: "confirmed", type: "One way", jet: "Bombardier Challenger 350", company: "JetStream" },
   ];
 
   const handleFromInput = (e) => {
     const value = e.target.value;
     setFromValue(value);
-    setFromSuggestions(locations.filter(loc =>
-      loc.name.toLowerCase().includes(value.toLowerCase())
-    ));
+    setFromSuggestions(locations.filter(loc => loc.name.toLowerCase().includes(value.toLowerCase())));
   };
 
   const handleToInput = (e) => {
     const value = e.target.value;
     setToValue(value);
-    setToSuggestions(locations.filter(loc =>
-      loc.name.toLowerCase().includes(value.toLowerCase())
-    ));
+    setToSuggestions(locations.filter(loc => loc.name.toLowerCase().includes(value.toLowerCase())));
   };
 
   const handleSelectFrom = (loc) => {
@@ -91,12 +86,7 @@ export default function BookSeat() {
 
         <div className="bookseat-search">
           <div className="autocomplete-box">
-            <input
-              type="text"
-              placeholder="From: Airport or city"
-              value={fromValue}
-              onChange={handleFromInput}
-            />
+            <input type="text" placeholder="From: Airport or city" value={fromValue} onChange={handleFromInput} />
             {fromSuggestions.length > 0 && (
               <ul className="autocomplete-list">
                 {fromSuggestions.map((loc, idx) => (
@@ -109,12 +99,7 @@ export default function BookSeat() {
           </div>
 
           <div className="autocomplete-box">
-            <input
-              type="text"
-              placeholder="To: Airport or city"
-              value={toValue}
-              onChange={handleToInput}
-            />
+            <input type="text" placeholder="To: Airport or city" value={toValue} onChange={handleToInput} />
             {toSuggestions.length > 0 && (
               <ul className="autocomplete-list">
                 {toSuggestions.map((loc, idx) => (
@@ -126,7 +111,9 @@ export default function BookSeat() {
             )}
           </div>
 
-          <button className="search-btn" onClick={handleSearch}>🔍</button>
+          <button className="search-btn" onClick={handleSearch}>
+            <FaSearch className="bookseat-search-icon" title="Search" />
+          </button>
         </div>
       </div>
 
@@ -155,39 +142,70 @@ export default function BookSeat() {
         {flightsToShow.map(flight => (
           <div className={`flight-card ${flight.status}`} key={flight.id}>
 
-            {/* IMAGE + DATE */}
-            <div className="flight-image">
-              <img src={flight.image} alt="flight" />
-              <span className="flight-date">{flight.date}</span>
-            </div>
+            <div className="flight-photo">
+  <img src={flight.image} alt={flight.toCity} />
 
-            {/* INFO */}
+  {/* Type de vol : Open = orange, Confirmed = vert */}
+  <span className={`flight-type-overlay ${flight.status}`}>
+    {flight.type}
+  </span>
+
+  {/* Type de jet en haut à droite */}
+  <span className="flight-jet-overlay">{flight.jet}</span>
+</div>
+
+
+            {/* ROUTE + TIMES */}
             <div className="flight-info">
-              <div className="flight-route">
-                <div>
-                  <strong>{flight.fromTime}</strong>
-                  <span>{flight.fromCity}</span>
+              <div className="flight-times">
+                <div className="departure">
+                  <span className="time">{flight.fromTime}</span>
+                  <span className="city">{flight.fromCity}</span>
                 </div>
 
-                <div className="flight-line">
-                  <span>{flight.duration}</span>
+                <div className="route-symbol-container">
+                  {/* Date centrée */}
+                  <span className="flight-date-text">{flight.date}</span>
+                  <div className="route-symbol">
+                     <span className="dots">• •</span>
+                      <span className="jet-symbol">✈</span>
+                      <span className="dots">• • •</span>
+                  </div>
                 </div>
 
-                <div>
-                  <strong>{flight.toTime}</strong>
-                  <span>{flight.toCity}</span>
+                <div className="arrival">
+                  <span className="time">{flight.toTime}</span>
+                  <span className="city">{flight.toCity}</span>
                 </div>
               </div>
+
+              {/* SINGLE SEPARATOR */}
+              <hr className={`flight-separator ${flight.status}`} />
 
               {/* FOOTER */}
-              <div className={`flight-footer ${flight.status}`}>
-                <span className="seats">
-                  {flight.seatsLeft} Seats left | {flight.seatsTotal}
-                </span>
-                <span className="price">{flight.price}</span>
-              </div>
-            </div>
+              {flight.status === "confirmed" && (
+                <div className="flight-footer">
+                  <span className="company">{flight.company}</span>
+                 <span className="seats">
+  <img src={seatIcon} alt="Seat" className="seat-icon" />
+  <span className="available">{flight.seatsLeft}</span>
+  <span className="total">/{flight.seatsTotal}</span>
+</span>
 
+                  <span className="price">{flight.price}/seat</span>
+                </div>
+              )}
+
+              {flight.status === "open" && (
+                <div className="flight-footer open">
+                  <span className="seats" style={{color: "#FFC107", fontWeight: "600"}}>
+                    {flight.seatsLeft} 4seats available!
+                  </span>
+                  <span className="price">{flight.price}/seat</span>
+                </div>
+              )}
+
+            </div>
           </div>
         ))}
       </div>

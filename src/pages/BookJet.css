@@ -297,68 +297,125 @@
 .flight-footer.confirmed {
   color: #fff;
 }
-/* Grand écran (>= 1280px) */
-@media (min-width: 1280px) {
-  .flight-display {
-    margin-left: 900px;
-    margin-top: -340px;
-  }
-}
-
-/* Écran moyen (1024px - 1279px) */
-@media (max-width: 1279px) and (min-width: 1024px) {
-  .flight-display {
-    margin-left: 400px;
-    margin-top: -200px;
-  }
-  .flight-form {
-    max-width: 500px;
-  }
-}
-
 /* =========================
-   TABLETTE – CARDS FLIGHT
+   RESPONSIVE (sans toucher background)
 ========================= */
-@media (max-width: 1024px) and (min-width: 768px) {
-  .flight-display {
-    margin-left: 50px;   /* décalage vers la droite adapté tablette */
-    margin-top: 50px;    /* espace depuis le hero */
-    gap: 15px;
+
+/* Laptop / tablette */
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .bookjet-page {
+    padding: 20px;
   }
 
-  .flight-card {
-    max-width: 500px;    /* largeur fixe pour tablette */
-    margin: 0 auto;      /* centre les cards horizontalement */
+  .bookjet-title,
+  .bookjet-desc {
+    margin-left: 0;
   }
 
-  .flight-image {
-    height: 160px;       /* ajuste la hauteur de l'image */
+  .trip-type,
+  .bookjet-tabs {
+    margin-left: 0;
   }
-}
 
+  .flight-form {
+    max-width: 100%;
+    margin-left: 0;
+  }
 
-/* Mobile (<768px) */
-@media (max-width: 767px) {
+  .next-btn {
+    width: auto;
+    margin-left: 0;
+  }
+
   .flight-display {
     margin-left: 0;
     margin-top: 20px;
+    width: 100%;
   }
-  .flight-form {
+
+  .flight-card {
     max-width: 100%;
-    padding: 15px;
+    margin: 0 auto;
   }
 }
-/* Tablette (768px - 1024px) */
-@media (max-width: 1024px) and (min-width: 768px) {
+
+/* Tablette (<1024px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .bookjet-page {
+    padding: 15px;
+  }
+
+  .bookjet-title,
+  .bookjet-desc {
+    margin-left: 0;
+  }
+
+  .trip-type,
+  .bookjet-tabs {
+    justify-content: flex-start;
+    margin-left: 0;
+    gap: 10px;
+  }
+
+  .flight-form {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
   .next-btn {
-    margin-left: 300px; /* réduit le décalage sur tablette */
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .flight-display {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .flight-card {
+    max-width: 100%;
   }
 }
 
 /* Mobile (<768px) */
 @media (max-width: 767px) {
+  .bookjet-page {
+    padding: 10px;
+  }
+
+  .bookjet-title,
+  .bookjet-desc {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .trip-type,
+  .bookjet-tabs {
+    justify-content: center;
+    margin-left: 0;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .flight-form {
+    width: 100%;
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .flight-display {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .flight-card {
+    max-width: 100%;
+  }
+
   .next-btn {
-    margin-left: 0;    /* colle à gauche sur mobile */
-    width: 100%;       /* prend toute la largeur du conteneur */
+    width: 100%;
+    margin-left: 0;
   }
 }

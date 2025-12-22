@@ -1,11 +1,12 @@
 .hero {
   position: relative;
-  height: 90vh;
+  height: 80vh;
   background-size: cover;
-  background-position: center;
+  background-position: center ;
   display: flex;
   align-items: center;
   color: white;
+  
 }
 
 .hero-overlay {
@@ -22,17 +23,18 @@
   position: relative;
   max-width: 900px;
   padding: 0 60px;
+  top: -100px; /* ⬅ remonte tout le bloc texte de 40px */
 }
 
 .hero-content h1 {
   font-size: 2.5rem;
-  margin-bottom: 15px;
-  font-weight: 500; /* Si tu veux gras, sinon 400 pour normal */
+  margin-bottom: 5px;
+  font-weight: 600; /* Si tu veux gras, sinon 400 pour normal */
 }
 
 .subtitle {
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   opacity: 0.9;
 }
 

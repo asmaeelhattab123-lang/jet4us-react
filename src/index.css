@@ -10,6 +10,8 @@ html, body, #root {
   font-family: "Titillium Web", system-ui, sans-serif;
   background-color: #000000;
   color: #989696;
+   overflow-x: hidden; /* supprime scroll horizontal */
+  overflow-y: auto;   /* garde scroll vertical */
 }
 
 .display {

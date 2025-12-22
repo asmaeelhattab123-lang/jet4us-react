@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   z-index: 100;
-  background: hsl(253, 38%, 9%); /* fond opaque identique à ton menu */
+  background:#111; /* fond opaque identique à ton menu */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,14 +38,15 @@
 }
 
 .navbar-logo {
-  height: 60px;
+  height: 55px;
   filter: none !important;
   box-shadow: none !important;
    content: none;
+   margin-top: 8px;      /* ⬅️ descend le logo */
 }
 
 .nav-icon {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: white;
   cursor: pointer;
 }
@@ -54,31 +55,71 @@
 }
 
 
-/* Ligne du bas : Menu principal */
-.navbar-menu {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  padding: 0 40px;
-  
-}
-/* Wrapper autour du menu pour la bordure */
+
 .navbar-menu-wrapper {
-  border-top: 1px solid rgb(57, 54, 54);     /* ligne du haut */
-  border-left: 1px solid rgb(57, 54, 54);    /* ligne gauche */
-  border-right: 1px solid rgb(57, 54, 54);   /* ligne droite */
-  border-bottom:  1px solid rgb(36, 33, 33);   /* ligne droite */;             /* ligne du bas invisible */
-  border-radius: 20px 20px 0 0;     /* coins arrondis en haut seulement */
-  padding: 5px 30px;         /* espace intérieur */
+  border-top: 1px solid rgb(57, 54, 54);
+  border-left: 1px solid rgb(57, 54, 54);
+  border-right: 1px solid rgb(57, 54, 54);
+  border-bottom: 1px solid rgb(36, 33, 33);
+  border-radius: 20px 20px 0 0;
+
+  padding: 10px 24px;
+  margin: 20px auto 0 auto;
+
+  max-width: 1300px;   /* largeur contrôlée */
+  width: 100%;
+
+  background: #000;
+  padding-bottom: 6px; /* équilibre visuel */
+}
+
+/* Menu principal à l'intérieur du wrapper */
+.navbar-menu {
   display: flex;
-  justify-content: space-between;   /* centre le menu à l'intérieur du wrapper */
-  margin-top: 20px;          /* si tu veux conserver l'espace en haut */
-  width: 100%;        /* largeur juste du menu */
-  box-sizing: border-box;    /* inclure padding dans la largeur */
-  background:hsl(0, 0%, 0%) ;         /* fond transparent */
+  justify-content: space-between; /* 🔥 sépare LEFT et RIGHT */
+  align-items: center;
+  width: 100%;
+}
+
+.menu-left {
+  display: flex;
+  gap: 22px; /* Fly now / Book seat / Book jet / More */
+}
+
+.menu-right {
+  display: flex;
+  gap: 22px; /* My Flight / Jetmates / Jet Set */
+}
+
+
+/* Liens */
+.navbar-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navbar-menu a.active {
+  color: #aa0101;
   
 }
+
+/* Responsive : centrer le menu sur mobile */
+@media screen and (max-width: 768px) {
+  .navbar-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-left, .menu-right {
+    justify-content: center;
+    gap: 15px;
+    margin: 5px 0;
+  }
+}
+
 
 
 .menu-left a,
@@ -107,7 +148,7 @@
 }
 
 
-/* ----------------- RESPONSIVE ----------------- */
+/* Responsive Desktop -> Tablet & Mobile */
 @media screen and (max-width: 1024px) {
   .navbar-top,
   .navbar-menu {
@@ -116,42 +157,62 @@
 }
 
 @media screen and (max-width: 768px) {
-  .navbar-menu {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  /* Ligne du haut */
+  .navbar-top {
+    justify-content: space-between;
+    padding: 0 15px;
   }
-  .menu-left,
+
+  /* Logo à gauche, icônes à droite */
+  .navbar-center {
+    position: static;
+    transform: none;
+  }
+  .navbar-logo {
+    height: 45px; /* réduit le logo */
+    margin-top: 0;
+  }
+
+  .navbar-right {
+    margin-left: auto;
+  }
+
+  /* Icônes légèrement plus petites */
+  .nav-icon {
+    font-size: 1rem;
+  }
+  .profile-icon {
+    font-size: 1.5rem;
+  }
+
+  /* Menu principal : seulement menu-left visible et sur une ligne */
   .menu-right {
-    margin: 0;
+    display: none;
+  }
+
+  .navbar-menu {
+    flex-direction: row;       /* reste en ligne */
+    justify-content: flex-start;
+    gap: 15px;
+    flex-wrap: nowrap;          /* empêche les retours à la ligne */
+    overflow-x: auto;           /* scroll horizontal si trop large */
+  }
+
+  /* Liens du menu */
+  .menu-left a {
+    white-space: nowrap;        /* empêche le retour à la ligne pour les textes */
   }
 }
 
 @media screen and (max-width: 480px) {
   .nav-icon {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .profile-icon {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
   }
   .navbar-menu a {
     font-size: 0.85rem;
     margin-right: 15px;
   }
 }
-/* Lien actif avec trait rouge */
-.navbar-menu a.active {
-  position: relative;
-
-}
-.navbar-menu a.active {
-  color: rgb(136, 4, 4);
-  font-weight: 600;
-}
-
-
-
-.navbar-menu a.active {
-  color: red !important;
-}
-
