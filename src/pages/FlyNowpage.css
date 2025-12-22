@@ -352,3 +352,41 @@
     font-size: 0.85rem;
   }
 }
+/* Pour les écrans très petits (mobile portrait) */
+@media screen and (max-width: 420px) {
+  /* Ajuste la zone principale pour éviter que le titre ne descende */
+  .flynow .flynow-top,
+  .bookjet .bookjet-top {
+    padding-top: 20px; /* réduit l’espace au-dessus du titre */
+  }
+
+  .flynow.flynow-menu .flynow-title {
+    position: relative; /* permet de déplacer le titre */
+    top: 40px;          /* ajuste cette valeur selon le rendu souhaité */
+    text-align: center; /* centre le titre sur petits écrans */
+     font-size: 1.3rem;
+  }
+  /* Conteneurs input / recherche */
+  .flynow-search,
+  .bookjet-search {
+    flex-direction: column; /* empile les champs */
+    gap: 10px;
+  }
+
+  .flynow-search input,
+  .bookjet-search input {
+    width: 100%; /* prend toute la largeur */
+  }
+
+  .flynow-search button,
+  .bookjet-search button {
+    width: 100%;
+  }
+
+  .flynow-card .flight-jet-overlay {
+    position: absolute;  /* reste positionné par rapport au parent */
+    top: 120px;           /* distance depuis le haut */
+    right: 0px;         /* distance depuis la droite */
+  }
+}
+

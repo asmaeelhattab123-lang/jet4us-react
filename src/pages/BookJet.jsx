@@ -3,6 +3,7 @@ import "./BookJet.css";
 import jetImage from "../assets/bookjet/jetint2.png";
 import flight1 from "../assets/bookseat/marrakech.png";
 import flight2 from "../assets/bookseat/paris2.png";
+import seatIcon from "../assets/seats.svg";
 
 export default function BookJet() {
   const [activeTab, setActiveTab] = useState("passengers");
@@ -10,56 +11,53 @@ export default function BookJet() {
   const [jetSize, setJetSize] = useState(4);
   const [seats, setSeats] = useState(1);
   const [fromValue, setFromValue] = useState("");
-  const [fromType, setFromType] = useState("city");
-
   const [toValue, setToValue] = useState("");
-  const [toType, setToType] = useState("city");
-
-  const [results, setResults] = useState([]);
 
   const handleJetSizeChange = (e) => {
     const size = Number(e.target.value);
     setJetSize(size);
-    setSeats(1); // reset seats when jet size changes
+    setSeats(1);
   };
 
   const flights = [
     {
       id: 1,
       image: flight1,
+      type: "Confirmed",
+      status: "confirmed",
+      jet: "Light Jet",
+      company: "Jet4Us",
       date: "24.12.2025",
       fromTime: "19:45",
       fromCity: "Marrakech",
       toTime: "23:00",
       toCity: "London",
-      duration: "3h 15min",
       seatsLeft: 4,
       seatsTotal: 7,
       price: "50.00 USD",
-      status: "confirmed",
     },
     {
       id: 2,
       image: flight2,
+      type: "Open",
+      status: "open",
+      jet: "Mid Jet",
+      company: "Jet4Us",
       date: "19.12.2025",
       fromTime: "06:30",
       fromCity: "Marrakech",
       toTime: "09:30",
       toCity: "Paris",
-      duration: "3h 00min",
-      seatsLeft: 8,
+      seatsLeft: 4,
       seatsTotal: 12,
       price: "31.66 USD",
-      status: "confirmed",
     },
   ];
 
   return (
     <section className="bookjet-page">
-      <div
-        className="bookjet-hero"
-        style={{ backgroundImage: `url(${jetImage})` }}
-      >
+      {/* HERO */}
+      <div className="bookjet-hero" style={{ backgroundImage: `url(${jetImage})` }}>
         <h1 className="bookjet-title">Book Jet</h1>
         <p className="bookjet-desc">
           Are you flying for business or privately? With partners, friends or family?
@@ -82,7 +80,7 @@ export default function BookJet() {
           </button>
         </div>
 
-        {/* ✅ TRIP TYPE – EN DEHORS DU CONTAINER */}
+        {/* TRIP TYPE */}
         {activeTab === "passengers" && (
           <div className="trip-type">
             <button
@@ -106,142 +104,158 @@ export default function BookJet() {
           </div>
         )}
 
-        {/* ✅ BOX CONTAINER */}
+        {/* FLIGHT FORM */}
         {activeTab === "passengers" && (
-          <>
-            <div className="flight-form">
-              <div className="flight-inputs">
-                {/* FROM / TO */}
-                <div className="from-to">
-                  <div className="input-box">
-                    <label>From</label>
-                    <input
-                       type="text"
-                       placeholder="City or Airport"
-                       value={fromValue}
-                       onChange={(e) => setFromValue(e.target.value)}
-                    />
+          <div className="flight-form">
+            <div className="flight-inputs">
+              {/* FROM / TO */}
+              <div className="from-to">
+                <div className="input-box">
+                  <label>From</label>
+                  <input
+                    type="text"
+                    placeholder="City or Airport"
+                    value={fromValue}
+                    onChange={(e) => setFromValue(e.target.value)}
+                  />
+                </div>
+
+                <div className="jet-symbol">✈</div>
+
+                <div className="input-box">
+                  <label>To</label>
+                  <input
+                    type="text"
+                    placeholder="City or Airport"
+                    value={toValue}
+                    onChange={(e) => setToValue(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* OPTIONS */}
+              <div className="flight-options">
+                <div className="option-box">
+                  <label>Jet Size</label>
+                  <select value={jetSize} onChange={handleJetSizeChange}>
+                    <option value={4}>4 seats</option>
+                    <option value={7}>7 seats</option>
+                    <option value={8}>8 seats</option>
+                    <option value={9}>9 seats</option>
+                    <option value={10}>10 seats</option>
+                    <option value={19}>19 seats</option>
+                  </select>
+                </div>
+
+                <div className="option-box">
+                  <label>Seats</label>
+                  <select value={seats} onChange={(e) => setSeats(Number(e.target.value))}>
+                    {[...Array(jetSize)].map((_, i) => (
+                      <option key={i} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="option-box">
+                  <label>Departure Date</label>
+                  <input type="date" />
+                </div>
+
+                <div className="option-box">
+                  <label>Departure Time</label>
+                  <select>
+                    <option value="morning">Morning</option>
+                    <option value="noon">Noon</option>
+                    <option value="evening">Evening</option>
+                    <option value="night">Night</option>
+                  </select>
+                </div>
+
+                <div className="option-box">
+                  <label>Flexibility Days</label>
+                  <select>
+                    <option>1 week</option>
+                    <option>2 weeks</option>
+                    <option>3 weeks</option>
+                  </select>
+                </div>
+
+                <div className="option-box">
+                  <label>Flexibility Distance</label>
+                  <select>
+                    <option>50 km</option>
+                    <option>100 km</option>
+                    <option>150 km</option>
+                    <option>200 km</option>
+                  </select>
+                </div>
+              </div>
+
+              <button className="next-btn">Next</button>
+            </div>
+          </div>
+        )}
+
+        {/* FLIGHT CARDS – Identiques Book Seat */}
+        <div className="flight-display">
+          {flights.map((flight) => (
+            <div className={`flight-card ${flight.status}`} key={flight.id}>
+              <div className="flight-photo">
+                <img src={flight.image} alt={flight.toCity} />
+                <span className={`flight-type-overlay ${flight.status}`}>{flight.type}</span>
+                <span className="flight-jet-overlay">{flight.jet}</span>
+              </div>
+
+              <div className="flight-info">
+                <div className="flight-times">
+                  <div className="departure">
+                    <span className="time">{flight.fromTime}</span>
+                    <span className="city">{flight.fromCity}</span>
                   </div>
 
-                  <div className="jet-symbol">✈</div>
+                  <div className="route-symbol-container">
+                    <span className="flight-date-text">{flight.date}</span>
+                    <div className="route-symbol">
+                      <span className="dots">• •</span>
+                      <span className="jet-symbol">✈</span>
+                      <span className="dots">• • •</span>
+                    </div>
+                  </div>
 
-                  <div className="input-box">
-                    <label>To</label>
-                    <input
-                       type="text"
-                       placeholder="City or Airport"
-                       value={fromValue}
-                       onChange={(e) => setFromValue(e.target.value)}
-                    />
-
+                  <div className="arrival">
+                    <span className="time">{flight.toTime}</span>
+                    <span className="city">{flight.toCity}</span>
                   </div>
                 </div>
 
-                {/* OPTIONS */}
-                <div className="flight-options">
-                  <div className="option-box">
-                    <label>Jet Size</label>
-                    <select value={jetSize} onChange={handleJetSizeChange}>
-                      <option value={4}>4 seats</option>
-                      <option value={7}>7 seats</option>
-                      <option value={8}>8 seats</option>
-                      <option value={9}>9 seats</option>
-                      <option value={10}>10 seats</option>
-                      <option value={19}>19 seats</option>
-                    </select>
-                  </div>
+                <hr className={`flight-separator ${flight.status}`} />
 
-                  <div className="option-box">
-                    <label>Seats</label>
-                    <select
-                      value={seats}
-                      onChange={(e) => setSeats(Number(e.target.value))}
-                    >
-                      {[...Array(jetSize)].map((_, i) => (
-                        <option key={i} value={i + 1}>
-                          {i + 1}
-                        </option>
-                      ))}
-                    </select>
+                {flight.status === "confirmed" && (
+                  <div className="flight-footer">
+                    <span className="company">{flight.company}</span>
+                    <span className="seats">
+                      <img src={seatIcon} alt="Seat" className="seat-icon" />
+                      <span className="available">{flight.seatsLeft}</span>
+                      <span className="total">/{flight.seatsTotal}</span>
+                    </span>
+                    <span className="price">{flight.price}/seat</span>
                   </div>
+                )}
 
-                  <div className="option-box">
-                    <label>Departure Date</label>
-                    <input type="date" />
+                {flight.status === "open" && (
+                  <div className="flight-footer open">
+                    <span className="seats" style={{ color: "#FFC107", fontWeight: "600" }}>
+                      {flight.seatsLeft} seats available!
+                    </span>
+                    <span className="price">{flight.price}/seat</span>
                   </div>
-
-                  <div className="option-box">
-                    <label>Departure Time</label>
-                    <select>
-                      <option value="morning">Morning</option>
-                      <option value="noon">Noon</option>
-                      <option value="evening">Evening</option>
-                      <option value="night">Night</option>
-                    </select>
-                  </div>
-
-                  <div className="option-box">
-                    <label>Flexibility Days</label>
-                    <select>
-                      <option>1 week</option>
-                      <option>2 weeks</option>
-                      <option>3 weeks</option>
-                    </select>
-                  </div>
-
-                  <div className="option-box">
-                    <label>Flexibility Distance</label>
-                    <select>
-                      <option>50 km</option>
-                      <option>100 km</option>
-                      <option>150 km</option>
-                      <option>200 km</option>
-                    </select>
-                  </div>
-                </div>
-
-                <button className="next-btn">Next</button>
+                )}
               </div>
             </div>
-
-            {/* ✅ FLIGHT CARDS – EN DEHORS DU CONTAINER */}
-            <div className="flight-display">
-              {flights.map((flight) => (
-                <div className="flight-card" key={flight.id}>
-                  <div className="flight-image">
-                    <img src={flight.image} alt="flight" />
-                    <span className="flight-date">{flight.date}</span>
-                  </div>
-
-                  <div className="flight-info">
-                    <div className="flight-route">
-                      <div>
-                        <strong>{flight.fromTime}</strong>
-                        <span>{flight.fromCity}</span>
-                      </div>
-
-                      <div className="flight-line">
-                        <span>{flight.duration}</span>
-                      </div>
-
-                      <div>
-                        <strong>{flight.toTime}</strong>
-                        <span>{flight.toCity}</span>
-                      </div>
-                    </div>
-
-                    <div className={`flight-footer ${flight.status}`}>
-                      <span>
-                        {flight.seatsLeft} Seats left | {flight.seatsTotal}
-                      </span>
-                      <span className="price">{flight.price}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
+          ))}
+        </div>
       </div>
     </section>
   );

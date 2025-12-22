@@ -29,7 +29,7 @@
   font-weight: 900;
   margin-bottom: 30px;
    margin-left: 60px; /* ajuste la valeur selon le besoin */
-   color: #b90404;
+   color: #b62828;
    
 }
 
@@ -418,4 +418,15 @@
     width: 100%;
     margin-left: 0;
   }
+}
+/* =========================
+   Ajustement titre Book Jet – petit écran uniquement
+========================= */
+@media screen and (max-width: 420px) and (max-height: 850px) {
+
+  .bookjet-title {
+    margin-top: -70px;   /* 🔽 descend le titre */
+     font-size: 1.5rem;   /* ⬅️ réduit la taille du titre */
+  }
+
 }
