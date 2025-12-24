@@ -158,8 +158,9 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
-   padding-left: 5px;     /* espace à gauche de la grille */
+  padding-left: 5px;     /* espace à gauche de la grille */
   padding-right: 5px;    /* espace à droite de la grille */
+  height: 360px;       /* taille fixe souhaitée */
 }
 
 /* IMAGE EN HAUT – PLEINE LARGEUR */
@@ -178,7 +179,7 @@
 
 .flight-date-text {
   position: absolute;
-  top: -16px;          /* ← ajuste ici : -12 / -15 / -20 */
+  top: -40px;          /* ← ajuste ici : -12 / -15 / -20 */
   left: 50%;
   transform: translateX(-50%);
   line-height: 1;
@@ -219,7 +220,7 @@
   font-weight: 600;
   font-size: 1rem;
   position: relative;
-  padding-top: 10px;
+  padding-top: 2px;
 }
 .route-symbol {
   display: flex;
@@ -231,7 +232,7 @@
   font-family: 'Titillium Web', sans-serif; /* ou la police de Book Seat */
   display: inline-block;       /* obligatoire */
   font-size: 37px;             /* taille souhaitée */
-  color: red;
+  color: rgb(142, 2, 2);
   line-height: 1;
   position: relative;          /* nécessaire pour translateY */
   transform: translateY(-10px); /* remonte le jet de 30px */
@@ -254,10 +255,12 @@
 
 .flight-separator.open {
   border-top: 0.5px solid rgba(225, 101, 6, 0.787);
+   margin: 2px 0;  /* remonte un peu la ligne */
 }
 
 .flight-separator.confirmed {
   border-top: 0.5px solid green;
+   margin: 2px 0;  /* remonte un peu la ligne */
 }
 
 .flight-footer.open::before {
@@ -265,26 +268,37 @@
 }
 .seats {
   display: flex;
-  align-items: center;
-  gap: 4px;
+  align-items: center;   /* ✅ aligne verticalement icône et texte */
+  gap: 4px;              /* espace horizontal entre icône et nombre */
   font-weight: 600;
-  color: #fff; /* couleur par défaut pour le total */
+  color: #fff;           /* couleur du total */
+  position: relative;
+  top: 6px;              /* pousse tout le bloc seats 2px vers le bas */
 }
 
 .seats .available {
-  color: #4CAF50; /* vert pour le nombre de sièges disponibles */
+  color: #4CAF50;        /* vert pour sièges disponibles */
 }
 
 .seats .total {
-  color: #fff; /* blanc pour le total */
+  color: #fff;           /* blanc pour le total */
 }
 
 .seat-icon {
   width: 18px;
   height: 18px;
-  position: relative;  /* permet le décalage */
-  top: -2px;           /* remonte de 2px, ajuste selon ton besoin */
+  display: flex;
+  justify-content: center;
+  align-items: center;   /* centre parfaitement l’icône dans son conteneur */
+  margin-right: 4px;     /* espace entre icône et nombre si nécessaire */
 }
+
+.seat-count {
+  display: flex;
+  align-items: center;   /* aligne texte et icône si imbriqués */
+  gap: 2px;              /* petit écart entre disponible / total */
+}
+
 
 .price {
   color: #fff;

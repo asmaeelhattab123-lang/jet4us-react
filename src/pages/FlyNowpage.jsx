@@ -1,3 +1,5 @@
+import { useState } from "react";
+import FlyNowDetail from "./FlyNowDetail";
 import "./FlyNowpage.css";
 
 import romeImg from "../assets/offers/rome.png";
@@ -5,25 +7,11 @@ import parisImg from "../assets/offers/paris.png";
 import londonImg from "../assets/offers/londre.png";
 import dubaiImg from "../assets/offers/dubai.png";
 import lagosImg from "../assets/offers/lagos.png";
-
 import seatIcon from "../assets/seats.svg";
 
+
+// Liste complète des vols
 const flights = [
-  {
-    id: 1,
-    photo: romeImg,
-    type: "One way",
-    jet: "Hawker 800 XPI",
-    date: "01.02.25",
-    departureTime: "19:45",
-    departureCity: "Lagos",
-    arrivalTime: "22:10",
-    arrivalCity: "Dakar",
-    company: "Equajet",
-    seatsAvailable: 3,
-    totalSeats: 9,
-    price: "2,500 USD",
-  },
   {
     id: 2,
     photo: parisImg,
@@ -32,12 +20,26 @@ const flights = [
     date: "02.02.25",
     departureTime: "14:00",
     departureCity: "Paris",
+    departureAirport: "Charles de Gaulle Airport",
     arrivalTime: "16:30",
     arrivalCity: "Agadir",
+    arrivalAirport: "Al Massira Airport",
     company: "SkyFly",
     seatsAvailable: 8,
     totalSeats: 13,
     price: "420 USD",
+    code: "GFLP2A5Q",
+    status: "Confirmed",
+    operator: "SkyFly Operator",
+    aircraft: "Gulfstream G550",
+    expiration: { days: 1, hours: 12, minutes: 10 },
+    seats: [
+      { available: true },
+      { available: true },
+      { available: true },
+      { available: true },
+      { available: false },
+    ],
   },
   {
     id: 3,
@@ -47,27 +49,49 @@ const flights = [
     date: "03.02.25",
     departureTime: "09:30",
     departureCity: "Rabat",
+    departureAirport: "Rabat-Salé Airport",
     arrivalTime: "11:45",
     arrivalCity: "Tangier",
+    arrivalAirport: "Tangier Ibn Battouta Airport",
     company: "JetStream",
-    seatsAvailable: 0, // COMPLET → ne sera pas affiché
+    seatsAvailable: 0,
     totalSeats: 9,
     price: "420 USD",
+    code: "BCH350R",
+    status: "Confirmed",
+    operator: "JetStream Operator",
+    aircraft: "Bombardier Challenger 350",
+    expiration: { days: 0, hours: 0, minutes: 0 },
+    seats: [],
   },
   {
     id: 4,
-    photo: parisImg,
+    photo: romeImg,
     type: "One way",
     jet: "Gulfstream G650",
     date: "05.12.25",
     departureTime: "14:00",
     departureCity: "Paris",
+    departureAirport: "Orly Airport",
     arrivalTime: "16:30",
     arrivalCity: "Dubai",
+    arrivalAirport: "Dubai Intl Airport",
     company: "SkyFly",
     seatsAvailable: 10,
     totalSeats: 15,
     price: "420 USD",
+    code: "G650DXB",
+    status: "Confirmed",
+    operator: "SkyFly Operator",
+    aircraft: "Gulfstream G650",
+    expiration: { days: 3, hours: 2, minutes: 15 },
+    seats: [
+      { available: true },
+      { available: true },
+      { available: true },
+      { available: true },
+      { available: true },
+    ],
   },
   {
     id: 5,
@@ -77,44 +101,52 @@ const flights = [
     date: "13.01.26",
     departureTime: "14:00",
     departureCity: "Dubai",
+    departureAirport: "Dubai Intl Airport",
     arrivalTime: "16:30",
     arrivalCity: "Marrakech",
+    arrivalAirport: "Marrakech Menara Airport",
     company: "SkyFly",
     seatsAvailable: 5,
     totalSeats: 7,
     price: "420 USD",
-  },
-  {
-    id: 6,
-    photo: lagosImg,
-    type: "One way",
-    jet: "Cessna Citation XLS+",
-    date: "13.01.26",
-    departureTime: "14:00",
-    departureCity: "Lagos",
-    arrivalTime: "16:30",
-    arrivalCity: "Dakar",
-    company: "SkyFly",
-    seatsAvailable: 4,
-    totalSeats: 5,
-    price: "420 USD",
+    code: "H900XPMA",
+    status: "Confirmed",
+    operator: "SkyFly Operator",
+    aircraft: "Hawker 900XP",
+    expiration: { days: 1, hours: 8, minutes: 0 },
+    seats: [
+      { available: true },
+      { available: false },
+      { available: true },
+      { available: true },
+    ],
   },
 ];
 
 export default function FlyNow() {
+  const [selectedFlight, setSelectedFlight] = useState(null);
+
+  // Si un vol est sélectionné → afficher FlyNowDetail
+  if (selectedFlight) {
+    return (
+      <FlyNowDetail
+        flight={selectedFlight}
+        onBack={() => setSelectedFlight(null)}
+      />
+    );
+  }
+
+  // Sinon → afficher la liste des vols comme avant
   return (
     <section className="flynow flynow-menu">
-      {/* Titre */}
       <h1 className="flynow-title">Fly Now</h1>
 
-      {/* Description + Recherche */}
       <div className="flynow-top">
         <p className="flynow-desc">
           Are you looking for an immediate departure from a closer airport?
           Fly Now allows you to book seats on any departing flights in the next
           48 hours.
         </p>
-
         <div className="flynow-search">
           <input type="text" placeholder="From: Airport or City" />
           <input type="text" placeholder="To: Airport or City" />
@@ -122,24 +154,21 @@ export default function FlyNow() {
         </div>
       </div>
 
-      {/* Cartes des vols */}
       <div className="flynow-cards">
         {flights
-          .filter(flight => flight.seatsAvailable > 0) // Ne montre que les vols avec sièges disponibles
-          .map((flight) => (
-            <div className="flynow-card" key={flight.id}>
-              {/* Photo + overlays */}
+          .filter(flight => flight.seatsAvailable > 0)
+          .map(flight => (
+            <div
+              className="flynow-card"
+              key={flight.id}
+              onClick={() => setSelectedFlight(flight)} // juste ça de ajouté
+            >
               <div className="flight-photo">
                 <img src={flight.photo} alt={flight.arrivalCity} />
-
-                {/* Type de vol en haut à gauche */}
                 <span className="flight-type-overlay">{flight.type}</span>
-
-                {/* Type de jet en bas à droite */}
                 <span className="flight-jet-overlay">{flight.jet}</span>
               </div>
 
-              {/* Horaires et villes */}
               <div className="flight-info">
                 <div className="flight-times">
                   <div className="departure">
@@ -147,7 +176,6 @@ export default function FlyNow() {
                     <span className="city">{flight.departureCity}</span>
                   </div>
 
-                  {/* Route + Date centrée */}
                   <div className="flynow-route-symbol-container">
                     <span className="flight-date-text">{flight.date}</span>
                     <div className="flynow-route-symbol">
@@ -163,13 +191,10 @@ export default function FlyNow() {
                   </div>
                 </div>
 
-                {/* Séparateur vert */}
                 <hr className="flight-separator" />
 
-                {/* Footer : compagnie, sièges, prix */}
                 <div className="flight-footer">
                   <span className="company">{flight.company}</span>
-
                   <span className="seats">
                     <span className="seat-icon">
                       <img src={seatIcon} alt="Seat" />
@@ -180,7 +205,6 @@ export default function FlyNow() {
                       {flight.totalSeats}
                     </span>
                   </span>
-
                   <span className="price">{flight.price}/seat</span>
                 </div>
               </div>

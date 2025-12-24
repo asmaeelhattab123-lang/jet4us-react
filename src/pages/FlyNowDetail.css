@@ -1,0 +1,663 @@
+
+.flynow-detail-page {
+  min-height: 100vh;
+  background-image: url("../assets/image1.png");
+  background-size: cover;          /* couvre tout l’écran */
+  background-position: center;     /* centrée */
+  background-repeat: no-repeat;
+}
+
+
+.back-arrow-btn {
+  background-color: #000;              /* box noire */
+  border: 1px solid #555;              /* bordure gris foncé */
+  color: #d40000;                      /* flèche rouge */
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.back-arrow-btn:hover {
+  background-color: #111;              /* noir légèrement plus clair */
+  transform: scale(1.05);              /* petit effet clean */
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.flynow-back-btn-container {
+  margin-top: 40px; /* ajuste la valeur (ex: 10px / 30px) */
+}
+
+
+/* Conteneur titre + détails */
+.flynow-header-and-details {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;   /* 🔥 LA CLÉ */
+}
+
+/* Titre Fly Now */
+.flynow-title-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 90px; /* décale le titre + cercle vers le bas */
+  margin-left: -20px;
+  color:  #adadad;
+  padding: 2px;
+}
+
+
+.flynow-red-circle {
+  color: rgb(177, 1, 1);
+  font-size: 1rem;
+}
+
+.flynow-detail-container {
+  flex: 1;
+  width: 100%;
+  background-color:rgba(36, 34, 37, 1);
+  border: 1px solid rgb(138, 138, 138);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 80px;
+  transform: translateX(-450px); /* 🔥 pousse vers la gauche */
+}
+
+
+
+/* Code du vol */
+.flight-code {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color:  #adadad;
+}
+
+.flight-status {
+  display: flex;
+  justify-content: space-between; /* One Way à gauche, Confirmed à droite */
+  margin-bottom: 15px;
+  gap: 10px; /* espace entre badges si jamais ils se rapprochent */
+}
+
+
+
+/* === LAYOUT PRINCIPAL === */
+.flight-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* GAUCHE | DROITE */
+  width: 100%;
+  margin: 30px 0;
+}
+
+/* === BLOCS === */
+.departure {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.arrival {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
+}
+
+
+.departure .badge {
+  justify-self: start;
+}
+
+.arrival .badge {
+  justify-self: end;
+  margin-left: auto;
+}
+
+
+
+
+/* === STATUS ROW === */
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* === INFO ROW === */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* === BLOCKS === */
+.block {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.block.left {
+  text-align: left;
+  color: #cfcece;
+}
+
+.block.right {
+  text-align: right;
+  color: #cfcece;
+}
+
+/* TITLES */
+.block .title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+  color: #cfcece;
+}
+
+/* BADGES */
+.badge {
+  background-color: rgb(1, 80, 45);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #cfcece;
+  margin-top: 4px;
+}
+
+.duration-container {
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;     /* centre verticalement */
+  margin: 20px 0;          /* espace au-dessus et en-dessous */
+}
+
+.duration-text {
+  display: block;
+  text-align: center;   /* centre horizontalement le texte */
+  margin: 0px auto;    /* centre le bloc lui-même */
+  font-size: 0.9rem;
+  font-weight: 500;
+  color:rgb(0, 118, 65); /* blanc, comme tes autres textes */
+}
+
+.duration-text {
+  position: relative;
+  top: -170px;   /* 🔼 fait monter UNIQUEMENT le texte */
+}
+
+/* === Fly Now Details : Route Symbol === */
+.fly-now-details-route {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+  gap: 6px;
+
+  position: relative;
+  top: -80px;   /* ⬅️ remonte (essaie -6, -8, -10 selon ton besoin) */
+}
+
+/* Points gris */
+.fly-now-details-dots {
+  color: #9a9a9a;
+  font-size: 24px;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+
+/* Jet rouge */
+.fly-now-details-jet {
+  font-size: 34px;
+  color: rgb(142, 2, 2);
+  line-height: 1;
+  position: relative;
+  top: -2px;
+}
+
+
+/* Opérateur / Aircraft */
+.flight-operator-aircraft {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  margin-top: -25px ;
+}
+/* Popup overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup content */
+.popup-content {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  color: white;
+  position: relative;
+}
+
+/* Close button */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Operator / Aircraft buttons */
+.operator-btn, .aircraft-btn {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* espace entre logo et texte */
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #b9b8b8;
+  padding: 2px 20px;
+  min-width: 190px;           /* largeur minimale */
+  height: 40px;               /* même hauteur pour tous les boutons */
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+
+
+.operator-btn:hover, .aircraft-btn:hover {
+  background-color: #444;
+  border: 1px solid rgb(1, 80, 45);
+}
+
+.logo-img {
+  width: 30px;         /* taille du logo */
+  height: 30px;
+  border-radius: 50%;  /* rend l'image ronde */
+  object-fit: cover;   /* garde le ratio et rempli le cercle */
+  margin-left: -10px;   /* espace entre le logo et le texte */
+ 
+}
+.btn-text {
+  flex: 1;            /* prend tout l’espace restant */
+  text-align: center;  /* centre le texte horizontalement */
+}
+
+
+.airport {
+  color: rgb(182, 181, 181); /* même couleur que le texte normal */
+  font-size: 0.85rem;        /* légèrement plus petit que la ville */
+  margin-top: 2px;           /* petit espace au-dessus */
+}
+
+.duration-expiration {
+  display: flex;
+  flex-direction: column; /* empile Duration et Expiration */
+  align-items: center;    /* centre horizontalement */
+}
+.expiration-wrapper {
+  display: flex;
+  align-items: center;  /* centre verticalement le texte et le bloc */
+  justify-content: center; /* centre tout horizontalement */
+  gap: 170px; /* espace entre "Expiration:" et le bloc des valeurs */
+  margin-left: -215px;
+}
+
+.expiration-label {
+  font-weight: 600;
+  color: #ababab;
+  font-size: 1.2rem;
+  margin-top: 0px; /* met une valeur négative pour remonter le bloc */
+    display: inline-block; 
+  transform: translateY(-40px); /* remonte uniquement le label */
+}
+
+.expiration-text {
+  display: flex;
+  gap: 40px; /* espace entre jours / heures / minutes */
+   margin-top: -5px; /* optionnel : ajuste si tu veux encore remonter les chiffres */
+}
+
+.expiration-text span {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;     
+  font-weight: 600;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-top: -70px; /* met une valeur négative pour remonter le bloc */
+}
+
+.expiration-text span::after {
+  content: attr(data-label); 
+  font-size: 0.9rem;
+  color: #f5f3f3;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* Sièges */
+.flynow-detail-seats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.flynow-detail-seat {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  transition: transform 0.1s, border 0.2s;
+}
+
+.flynow-detail-seat img {
+  width: 60%;
+  height: 60%;
+}
+
+.flynow-detail-seat.available {
+  background-color: #b0afaf; /* gris clair */
+}
+
+.flynow-detail-seat.unavailable {
+  background-color: #555; /* gris foncé */
+  cursor: not-allowed;
+}
+
+.flynow-detail-seat.selected {
+  background-color:rgb(1, 80, 45); /* gris clair */
+  border: 2px solid rgb(10, 45, 10);
+  transform: scale(1.1);
+}
+
+.flynow-detail-seat:hover.available {
+  transform: scale(1.1);
+}
+
+
+
+.flynow-detail-seats .seat-count {
+  color: #FFD700;       /* texte jaune */
+  white-space: nowrap;   /* une seule ligne */
+  font-weight: 600;      /* plus visible */
+  background: none;      /* supprime le fond hérité */
+  border: none;          /* supprime toute bordure */
+  padding: 0;            /* supprime padding éventuel */
+  margin-top: 8px; /* espace sous les sièges */
+  white-space: nowrap;
+  display: block;
+}
+
+/* Box prix + bouton Book */
+.book-container {
+  position: relative;  /* nécessaire pour pouvoir bouger sans affecter les autres */
+  top: 20px;           /* 🔥 déplace juste ce container vers le bas */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #111; /* boîte noire */
+  border: 1px solid #888; /* bordure grise */
+  border-radius: 12px;
+  padding: 8px 12px;
+  gap: 10px;
+  width: max-content; /* s'adapte au contenu */
+  margin-left: auto;  /* pousse à droite */
+  margin-top: 10px;           /* 🔥 pousse le conteneur vers le bas */
+  align-self: flex-end;     /* pousse uniquement ce container vers le bas du parent flex */
+}
+
+.book-container .price {
+  color: #fff;
+  font-weight: 600;
+}
+
+.book-btn {
+  background-color: rgb(1, 80, 45);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 0;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .flynow-detail-container {
+    transform: translateX(-200px); /* réduit le push desktop */
+  }
+
+  .expiration-wrapper {
+    gap: 80px;
+    margin-left: -100px;
+  }
+}
+@media screen and (max-width: 1024px) {
+
+  .flynow-header-and-details {
+    flex-direction: column;
+  }
+
+  /* Bouton back toujours visible */
+  .flynow-back-btn-container {
+    display: block;
+    margin-top: 20px;
+    z-index: 10;
+  }
+
+  .flynow-title-section {
+    justify-content: center;
+    margin: 30px 0 10px 0;
+  }
+
+  .flynow-detail-container {
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  /* Expiration corrigé */
+  .expiration-wrapper {
+    gap: 40px;
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+
+  .expiration-label {
+    transform: none;
+  }
+
+  .expiration-text span {
+    margin-top: 0;
+  }
+}
+/* ====================== RESPONSIVE MOBILE / TABLET ====================== */
+@media screen and (max-width: 768px) {
+
+  /* === Bouton back visible === */
+  .flynow-back-btn-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    z-index: 9999; /* garantit qu’il reste au-dessus */
+  }
+
+  .back-arrow-btn {
+    display: flex;
+    position: relative;
+    z-index: 9999;
+  }
+
+  /* === Header et titre centrés === */
+  .flynow-header-and-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flynow-title-section {
+    justify-content: center;
+    margin: 20px 0;
+    margin-left: 0;
+  }
+
+  .flynow-title-section h2 {
+    text-align: center;
+  }
+
+  /* === Container principal responsive === */
+  .flynow-detail-container {
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  /* === Expiration texte reste dans le container === */
+  .expiration-wrapper {
+    margin-left: 0;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .expiration-label {
+    transform: none;
+  }
+
+  .expiration-text span {
+    margin-top: 0;
+  }
+}
+
+/* === Responsive petit écran 430-480px === */
+@media screen and (max-width: 480px) {
+
+  /* Bouton back légèrement plus bas et visible */
+  .flynow-back-btn-container {
+    margin-top: 47px;  /* ajuste si besoin */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+.flynow-back-btn-container.hidden {
+    opacity: 0;             /* rend invisible */
+    pointer-events: none;   /* désactive le clic */
+    transform: translateY(-20px); /* glisse légèrement vers le haut */
+  }
+  /* Duration juste sous les dots + jet */
+  .duration-text {
+    font-size: 0.8rem;
+    margin-top: 19px;        /* sous le jet */
+    text-align: center;
+    color: rgb(1, 127, 34);    /* rouge */
+    font-weight: 600;
+  }
+
+  /* Supprimer le label "Duration:" si tu veux juste 3h20m */
+  .duration-text::before {
+    content: ""; 
+  }
+
+  /* Les boutons operator/aircraft sur une seule ligne */
+  .flight-operator-aircraft {
+    flex-direction: row;     /* une seule ligne */
+    flex-wrap: nowrap;       /* ne pas passer à la ligne suivante */
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    transform: translateY(-20px);   /* remonte uniquement de 10px */
+  }
+
+  .operator-btn,
+  .aircraft-btn {
+    min-width: 120px;        /* largeur minimale */
+    max-width: 160px;        /* largeur maximale */
+    margin: 0;               /* garde la ligne */
+    flex: 1;                 /* occupe espace disponible */
+    margin-top: 0px;
+  }
+
+  /* Conteneur principal avec bordure visible */
+  .flynow-detail-container {
+    border: 1px solid rgb(138, 138, 138); /* garde les bordures */
+    border-radius: 12px;
+    padding: 15px;
+    transform: translateX(0);              /* pas de décalage */
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  /* Ajustement expiration / seats si nécessaire */
+  .expiration-wrapper {
+    gap: 10px;
+    margin-left: 0;
+  }
+.expiration-label {
+  display: inline-block;          /* garde le label comme élément en ligne */
+  transform: translateY(-30px);   /* remonte uniquement le label de 10px */
+}
+.expiration-text span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+  color: #fff;
+  font-size: 1.3rem;
+  transform: translateY(-25px); /* 🔼 remonte les chiffres */
+}
+
+  .flynow-detail-seats {
+    gap: 5px;
+  }
+
+  .book-container {
+    margin-top: 10px;
+  }
+}
+/* Texte jaune sous les sièges, aligné à gauche */
+.flynow-detail-seats .seat-count {
+  color: #FFD700;          /* jaune */
+  white-space: nowrap;      /* une seule ligne */
+  font-weight: 600;
+  display: block;
+  margin-top: 50px;         /* espace sous les sièges */
+  margin-left: -160px;
+}
+
+
