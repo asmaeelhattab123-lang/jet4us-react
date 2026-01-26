@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+jet4us-backend/data/*.json
+jet4us-backend/*.txt
+src/assets/videos/*.mp4
