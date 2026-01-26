@@ -1,0 +1,112 @@
+.city-search-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* max width pour grand écran */
+  min-width: 200px; /* largeur minimale */
+  margin: 0 auto;
+}
+
+.city-search-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+   overflow: hidden; /* masque tout dépassement */
+}
+
+/* Input avec texte défilant */
+.city-search-inner input {
+  width: 100%;
+  padding: 8px 40px 8px 12px; /* espace pour X */
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  white-space: nowrap;        /* empêche le texte de passer à la ligne */
+  overflow-x: auto;           /* permet de défiler horizontalement */
+  text-overflow: ellipsis;    /* "..." si texte trop long visible */
+  font-size: 16px;
+  color: #f3f0f0 !important;           /* texte noir */
+  scrollbar-width: none;     /* Firefox */
+}
+
+
+/* Focus input */
+.city-search-inner input:focus {
+  border: 2px solid #046e32;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* X pour effacer */
+.clear-input {
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: #dad4d4;
+  z-index: 100;
+  background: rgba(90, 90, 90, 0.5);
+  padding: 2px 6px;
+  border-radius: 20%;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover X */
+.clear-input:hover {
+  color: #f00;
+}
+
+/* Dropdown */
+.city-search-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 0;
+  margin-top: 4px;
+  list-style: none;
+}
+
+.city-search-item {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+
+
+/* Responsive breakpoints */
+@media screen and (max-width: 1024px) {
+  .city-search-container {
+    max-width: 100%;
+  }
+  .city-search-inner input {
+    font-size: 15px;
+    padding: 6px 36px 6px 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .city-search-inner input {
+    font-size: 14px;
+    padding: 6px 36px 6px 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .city-search-inner input {
+    font-size: 13px;
+    padding: 5px 34px 5px 8px;
+  }
+}

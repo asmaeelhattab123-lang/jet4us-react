@@ -118,8 +118,80 @@
   padding: 10px 18px;
   border-radius: 25px;
   cursor: pointer;
+   transition: all 0.2s;
 }
 
+.create-flight.active {
+  background-color: rgb(108, 1, 1); /* ou #ff4d4d pour un rouge plus joli */
+  color: white;
+   border: 1px solid #d4d2d2;
+}
+.create-flight-display {
+  position: relative; /* permet de bouger le conteneur sans influencer les autres éléments */
+  top: 20px;          /* décale vers le bas uniquement ce conteneur */
+  margin: -25px 0;
+  padding: 15px 20px;
+  background-color:transparent;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(105, 66, 66, 0.05);
+  margin-left: 50px;
+  text-align: center; /* centre tout le contenu */
+  border: 0.5px solid #a83a3a; /* couleur rouge sombre, épaisseur 2px */
+  
+}
+
+.create-flight-title {
+  color: rgb(127, 4, 4); /* rouge */
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.create-flight-desc {
+  font-size: 18px;
+  color: #c4c2c2;
+  line-height: 1.5;
+  margin-bottom: -10px;
+}
+
+.trip-type-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trip-type-selector label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #f4f0f0;
+}
+
+.create-flight-layout {
+  display: flex;
+  flex-direction: row;   /* assure la ligne horizontale */
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 60px;             /* espace entre le formulaire et la vidéo */
+  width: 100%;
+  flex-wrap: wrap;       /* sur petit écran, vidéo en dessous */
+  margin-top: 10px;
+}
+
+.flight-form {
+  flex: 1 1 600px;       /* formulaire prend tout l’espace disponible */
+}
+
+.create-flight-video {
+  flex: 0 0 240px;       /* largeur fixe pour la vidéo */
+   margin-top: 85px;   /* décale la vidéo et le titre vers le bas */
+}
+
+.create-flight-video h3 {
+  margin-bottom: 20px; /* espace entre le titre et la vidéo */
+  font-size: 20px;     /* ajuste la taille du titre si besoin */
+  color: #f8f6f6;      /* optionnel : couleur FlyNow */
+  text-align: center; /* au cas où */
+}
 /* =========================
    LIST (IDENTIQUE FLY NOW)
 ========================= */
@@ -302,6 +374,7 @@
 
 .price {
   color: #fff;
+  transform: translateY(5px); /* 🔼 remonte les chiffres */
 }
 /* =========================
    Responsive BookSeat stable

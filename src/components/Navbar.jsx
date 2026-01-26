@@ -6,7 +6,7 @@ import { FaBell, FaUserCircle, FaGlobe, FaSearch, FaInfoCircle, FaPhone } from "
 
 export default function Navbar({ currentPage, setCurrentPage }) {
   const menuLeftItems = ["Home", "Fly now", "Book seat", "Book jet", "More"];
-  const menuRightItems = ["My Flight", "Jetmates", "Jet Set"];
+  const menuRightItems = ["My Flights", "Jetmates", "Jet Set"];
 
   return (
     <header className="navbar">

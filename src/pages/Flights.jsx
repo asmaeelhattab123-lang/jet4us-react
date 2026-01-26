@@ -3,6 +3,7 @@ import { getFlights } from "../api/apiClient.jsx";
 import { AuthContext } from "../context/AuthContext.jsx";
 import FlightCard from "../components/FlightCard.jsx";
 
+
 export default function Flights() {
   const { token } = useContext(AuthContext);
   const [flights, setFlights] = useState([]);

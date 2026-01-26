@@ -1,0 +1,46 @@
+/* Conteneur global de la page */
+.myflights-bg {
+  min-height: 100vh;      /* occupe toute la hauteur de l'écran */
+  padding-top: 80px;      /* descend le titre et les cartes */
+  display: flex;
+  flex-direction: column;
+  background-color: #121212; /* fond sombre pour harmoniser avec les cards */
+}
+
+/* Titre "My Flights" */
+.myflights-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;    /* espace entre le titre et les cards */
+  color: #fff;
+  text-align: center;
+}
+
+.myflights-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;          /* ✅ permet le retour à la ligne */
+  gap: 24px;
+  width: 60%;
+  max-width: 1200px;        /* ✅ largeur confortable */
+  padding: 0 40px;          /* ✅ marge intérieure */
+  margin: 0 auto;           /* ✅ centre le bloc global */
+  justify-content: flex-start;
+  align-items: stretch;
+}
+@media (max-width: 1024px) {
+  .myflights-list {
+    max-width: 100%;
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .myflights-title {
+    font-size: 26px;
+  }
+
+  .myflights-list {
+    justify-content: center; /* mobile = centré */
+  }
+}

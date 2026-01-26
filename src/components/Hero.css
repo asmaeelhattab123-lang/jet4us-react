@@ -22,13 +22,13 @@
 .hero-content {
   position: relative;
   max-width: 900px;
-  padding: 0 60px;
-  top: -100px; /* ⬅ remonte tout le bloc texte de 40px */
+  padding: 0 30px;
+  top: -90px; /* ⬅ remonte tout le bloc texte de 40px */
 }
 
 .hero-content h1 {
   font-size: 2.5rem;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   font-weight: 600; /* Si tu veux gras, sinon 400 pour normal */
 }
 

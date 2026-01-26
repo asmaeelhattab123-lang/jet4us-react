@@ -169,12 +169,12 @@ export default function FlyNowDetail({ flight, onBack }) {
               </div>
             ))}
 
-            <span className="seat-count">
-              {flight.seatsAvailable}/{flight.totalSeats} seats available
+            <span className=" flynow-detail-seat-count">
+              {flight.seatsAvailable}/{flight.totalSeats} seats available!
             </span>
 
             <div className="book-container">
-              <span className="price">{totalPrice} USD</span>
+              <span className="flynow-detail-price">{totalPrice} USD</span>
               <button className="book-btn">Book</button>
             </div>
           </div>

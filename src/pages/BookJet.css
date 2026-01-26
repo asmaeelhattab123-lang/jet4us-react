@@ -1,6 +1,7 @@
 .bookjet-page {
   padding:-4px 90px;
   color: #fff;
+  position: relative;
 }
 
 /* =========================
@@ -17,7 +18,7 @@
   background-size: 100% auto;
   background-position: top center; /* top pour montrer la partie haute */
   background-repeat: no-repeat;
-  height: 40vh; /* moitié de l'écran */
+  height: 45vh; /* moitié de l'écran */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -105,11 +106,11 @@
 
 /* FLIGHT FORM */
 .flight-form {
-  background-color: rgba(36, 34, 37, 1); /* transparent clair */
+  background-color: rgb(36, 36, 36); /* transparent clair */
   border: 1px solid #888; /* bordure grise */
   border-radius: 12px;
   padding: 20px;
-  margin-top: 30px;       /* espace en haut */
+  margin-top: 100px;       /* espace en haut */
   max-width: 800px;        /* largeur du box */
   margin-left: 45px;          /* pousse à gauche */
 }
@@ -126,6 +127,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #fff;
   
 }
 
@@ -134,6 +136,7 @@
   max-width: 400px;      /* limite sur grand écran */
   display: flex;
   flex-direction: column;
+  color: #fff;
 }
 
 .input-box input {
@@ -211,6 +214,80 @@
   position: absolute;
 }
 
+/* =========================
+   BOX DE CHAQUE VOL – MULTI CITY SEULEMENT
+========================= */
+
+.flight-form .flight-inputs > div:has(.from-to):has(.flight-options) {
+  background: rgba(9, 9, 9, 0.9);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+/* Hover */
+.flight-form .flight-inputs > div:has(.from-to):has(.flight-options):hover {
+  background: rgba(48, 48, 48, 0.9);
+  transform: translateY(-2px);
+}
+
+.multicity-flight {
+  position: relative; /* 🔑 indispensable */
+  background: rgba(9, 9, 9, 0.9);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+
+  /* ICI tu règles la bordure */
+  border: 1px solid rgba(255,255,255,0.15);
+  /* ou */
+  /* border: none; */
+
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+
+
+.add-flight-btn {
+  display: block;          /* block pour être sous les boxes */
+  margin: -10px 0 0 auto;  /* espace au-dessus et aligné à droite */
+  background-color:rgb(142, 2, 2);
+  color: #fff;
+  margin-right: 650px;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.add-flight-btn:hover {
+  background-color: #d10000;
+  transform: scale(1.05);
+}
+
+
+
+
+.remove-segment {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ff3b3b;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.remove-segment:hover {
+  transform: scale(1.15);
+}
+
+
+
 
 /* Next button */
 .next-btn {
@@ -224,20 +301,27 @@
   width: 200px;             /* largeur fixe souhaitée */
   max-width: 100%;          /* s'adapte sur petit écran */
   margin-left: 556px; /* pousse le bouton vers la droite */
+  position: relative;
+  z-index: 20;
 }
 .next-btn:hover {
   background-color: #a30101;
 }
+
+
 /* FLIGHT DISPLAY */
 .flight-display {
-  flex: 1;
-  margin-left: 20px;
-   margin-top: -340px; /* 🔥 plus petit = boxes plus proches du hero */
+  position: absolute;
+  top: 457px;     /* distance depuis le haut (ajuste selon hero) */
+  right: 90px;    /* distance depuis le bord droit */
+  width: 450px;   /* largeur fixe */
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-left: 900px; /* 🔥 déplace toutes les cards vers la droite */
+  max-height: calc(120vh - 150px); /* limite la hauteur */
+  overflow-y: auto; /* scroll interne si beaucoup de cards */
 }
+
 
 .flight-card {
   display: flex;
@@ -302,131 +386,136 @@
 ========================= */
 
 /* Laptop / tablette */
+@media (min-width: 1280px) {
+  .flight-display {
+    position: absolute;
+    top: 457px;
+    right: 90px;
+    width: 450px;
+    max-height: calc(120vh - 150px);
+    overflow-y: auto;
+  }
+}
+
 @media (max-width: 1279px) and (min-width: 1024px) {
-  .bookjet-page {
-    padding: 20px;
-  }
-
-  .bookjet-title,
-  .bookjet-desc {
-    margin-left: 0;
-  }
-
-  .trip-type,
-  .bookjet-tabs {
-    margin-left: 0;
-  }
-
-  .flight-form {
-    max-width: 100%;
-    margin-left: 0;
-  }
-
-  .next-btn {
-    width: auto;
-    margin-left: 0;
-  }
-
   .flight-display {
-    margin-left: 0;
-    margin-top: 20px;
-    width: 100%;
+    position: relative;
+
+    width: 450px;
+    margin:-400px auto 0 auto;
+
+    max-height: none;
+    overflow: visible;
   }
 
   .flight-card {
-    max-width: 100%;
-    margin: 0 auto;
+    width: 100%;
   }
 }
 
-/* Tablette (<1024px) */
-@media (max-width: 1023px) and (min-width: 768px) {
-  .bookjet-page {
-    padding: 15px;
-  }
 
-  .bookjet-title,
-  .bookjet-desc {
-    margin-left: 0;
-  }
 
-  .trip-type,
-  .bookjet-tabs {
-    justify-content: flex-start;
-    margin-left: 0;
-    gap: 10px;
-  }
-
-  .flight-form {
-    max-width: 100%;
-    margin-left: 0;
-  }
-
-  .next-btn {
-    width: 100%;
-    margin-left: 0;
-  }
-
+@media (max-width: 1023px) {
   .flight-display {
-    margin-left: 0;
-    margin-top: 20px;
+    position: relative !important;
+
     width: 100%;
+    max-width: 450px;
+
+    margin: -400px auto 0 auto;
+
+    max-height: none;
+    overflow: visible;
+
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+
+    
   }
 
   .flight-card {
-    max-width: 100%;
+    width: 100%;
+  }
+
+  .add-flight-btn {
+    margin-right: auto;      /* aligne à gauche */
+    margin-left: 0;          /* supprime le décalage à droite */
+    font-size: 13px;         /* taille légèrement réduite */
+    padding: 6px 12px;       /* padding réduit */
+    white-space: nowrap;     /* texte sur une seule ligne */
   }
 }
 
-/* Mobile (<768px) */
-@media (max-width: 767px) {
-  .bookjet-page {
-    padding: 10px;
-  }
 
-  .bookjet-title,
-  .bookjet-desc {
-    text-align: center;
-    margin-left: 0;
-  }
-
-  .trip-type,
-  .bookjet-tabs {
-    justify-content: center;
-    margin-left: 0;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .flight-form {
-    width: 100%;
-    margin-left: 0;
-    padding: 15px;
-  }
-
-  .flight-display {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 20px;
-  }
-
-  .flight-card {
-    max-width: 100%;
-  }
+@media (max-width: 760px) {
 
   .next-btn {
-    width: 100%;
-    margin-left: 0;
+    margin-left: auto;   /* 🔥 annule le 556 */
+    margin-right: auto;
+    display: block;
   }
-}
-/* =========================
-   Ajustement titre Book Jet – petit écran uniquement
-========================= */
-@media screen and (max-width: 420px) and (max-height: 850px) {
 
+   /* TITRE */
   .bookjet-title {
-    margin-top: -70px;   /* 🔽 descend le titre */
-     font-size: 1.5rem;   /* ⬅️ réduit la taille du titre */
+    margin-left: 0 !important;
+    text-align: center;
+    font-size: 24px;       /* réduit le titre */
+  }
+
+  /* TEXTE */
+  .bookjet-desc {
+    margin-left: 0 !important;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    font-size: 0.9rem;     /* réduit le texte */
+  }
+
+  /* FLIGHT FORM */
+  .flight-form {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 90%;
+  }
+
+  .bookjet-hero {
+    padding-top: 80px !important;
+    height: auto !important;
+  }
+ .bookjet-tabs {
+    margin-top: 20px !important;
+  }
+
+  /* One way / Round trip / Multicity */
+  .trip-type {
+    margin-top: 10px !important;
+  }
+
+  /* FLIGHT FORM */
+  .flight-form {
+    margin-top: 20px !important;
+  }
+
+  /* FLIGHT CARDS */
+  .flight-display {
+    margin-top: -400px !important;
+  }
+.add-flight-btn {
+    margin-right: auto;      /* reste à gauche */
+    margin-left: 0;
+    font-size: 13px;         /* encore plus petit */
+    padding: 6px 12px;        /* padding réduit */
+    white-space: nowrap;     /* texte sur une seule ligne */
+  }
+}
+@media (max-width: 430px) {
+
+  .next-btn {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;      /* meilleur UX mobile */
+    max-width: 260px;
   }
 
 }

@@ -1,0 +1,181 @@
+.flightCard {
+  display: flex;
+  flex-direction: column;  /* card verticale */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 480px;       /* largeur stable */
+}
+
+.flightPhoto {
+  position: relative;
+  width: 100%;
+  height: 200px;           /* un peu plus haut pour l'image verticale */
+  overflow: hidden;
+}
+
+.flightPhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flightTypeOverlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 8px;
+  background-color: #070707;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.flightJetOverlay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.flightInfo {
+  display: flex;
+  flex-direction: column;  /* tout vertical */
+  gap: 20px;                /* espace entre chaque info */
+  padding: 2px 14px;
+  color: #fff;
+}
+
+.flightTimes {
+  display: flex;
+  flex-direction: space-between;
+  gap: 6px;
+}
+
+.departure,
+.arrival,
+.routeSymbolContainer {
+  display: flex;
+  flex-direction: column;  /* chaque bloc vertical */
+  align-items: flex-start;
+   width: 290px; /* ajuste la largeur de chaque bloc pour rapprocher To */
+   margin-top: 60px;
+}
+
+.time {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.city {
+  font-size: 13px;
+  color: #f5f1f1;
+}
+
+.routeSymbolContainer {
+  display: flex;
+  flex-direction: column; /* date au-dessus */
+  align-items: center;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.flightDateText {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px; /* espace entre date et ligne du trajet */
+}
+
+.routeSymbol {
+  display: flex;           /* ligne horizontale */
+  align-items: center;
+  justify-content: center; /* centrer entre From et To */
+  font-size: 14px;
+}
+
+.dots {
+  color: #999;
+  margin: 0 4px;
+}
+
+.jetSymbol {
+  color: #820703;
+  font-size: 16px;
+}
+
+.flightSeparator {
+  border: none;
+  border-top: 0.5px solid #060606;
+  margin: 2px 0;
+}
+
+.flightFooter {
+  display: flex;
+  justify-content: space-between;  /* left / center / right */
+  align-items: flex-start;        /* pousse les éléments vers le haut */
+  font-size: 14px;
+  gap: 10px;
+  padding-top: 4px;               /* optionnel, ajuste la hauteur interne */
+}
+
+.flightFooter .seats,
+.flightFooter .price {
+  margin-top: -12px; /* pousse légèrement vers le haut */
+}
+
+.flightFooter .company {
+  position: relative;
+  top: -12px; /* ajuste ce nombre pour pousser exactement comme tu veux */
+}
+.flightFooter .company {
+  position: relative;
+  top: -12px; /* ajuste ce nombre pour pousser exactement comme tu veux */
+}
+.company {
+  font-weight: 600;
+}
+
+.seats {
+  display: flex;
+  align-items: center;
+}
+
+.seatIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.available {
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+.total {
+  color: #666;
+}
+
+.price {
+  font-weight: 700;
+}
+
+/* STATUTS */
+.private {
+  border: 0.2px solid #5c5b5a;
+}
+
+.open {
+  border: 0.2px solid #4caf50;
+}
+
+.confirmed {
+  border: 0.2px solid #2196f3;
+}

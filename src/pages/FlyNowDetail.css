@@ -411,7 +411,7 @@
 
 
 
-.flynow-detail-seats .seat-count {
+.flynow-detail-seats .flynow-detail-seat-count {
   color: #FFD700;       /* texte jaune */
   white-space: nowrap;   /* une seule ligne */
   font-weight: 600;      /* plus visible */
@@ -441,7 +441,7 @@
   align-self: flex-end;     /* pousse uniquement ce container vers le bas du parent flex */
 }
 
-.book-container .price {
+.book-container .flynow-detail-price {
   color: #fff;
   font-weight: 600;
 }
@@ -649,15 +649,6 @@
   .book-container {
     margin-top: 10px;
   }
-}
-/* Texte jaune sous les sièges, aligné à gauche */
-.flynow-detail-seats .seat-count {
-  color: #FFD700;          /* jaune */
-  white-space: nowrap;      /* une seule ligne */
-  font-weight: 600;
-  display: block;
-  margin-top: 50px;         /* espace sous les sièges */
-  margin-left: -160px;
 }
 
 

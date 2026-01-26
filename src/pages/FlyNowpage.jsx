@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FlyNowDetail from "./FlyNowDetail";
+import CitySearch from "../components/CitySearch.jsx"; // <-- import
 import "./FlyNowpage.css";
 
 import romeImg from "../assets/offers/rome.png";
@@ -122,9 +123,14 @@ const flights = [
     ],
   },
 ];
-
 export default function FlyNow() {
   const [selectedFlight, setSelectedFlight] = useState(null);
+  const [fromLocation, setFromLocation] = useState(null);
+  const [toLocation, setToLocation] = useState(null);
+  const [fromValue, setFromValue] = useState(""); // texte affiché
+  const [toValue, setToValue] = useState("");     // texte affiché
+  const [filteredFlights, setFilteredFlights] = useState(flights); // <-- liste affichée
+ 
 
   // Si un vol est sélectionné → afficher FlyNowDetail
   if (selectedFlight) {
@@ -135,6 +141,37 @@ export default function FlyNow() {
       />
     );
   }
+
+
+const handleSearch = () => {
+  // Vérifie que From et To ne sont pas identiques (texte complet)
+  if (fromValue && toValue && fromValue === toValue) {
+    alert("From and To cannot be the same city");
+    setFilteredFlights([]);
+    return;
+  }
+
+  const filtered = flights.filter((flight) => {
+    const matchFrom =
+      !fromLocation ||
+      flight.departureCity.toLowerCase() === fromLocation.city.name.toLowerCase() ||
+      flight.departureAirport
+        .toLowerCase()
+        .includes(fromLocation.airport?.name.toLowerCase() || "");
+
+    const matchTo =
+      !toLocation ||
+      flight.arrivalCity.toLowerCase() === toLocation.city.name.toLowerCase() ||
+      flight.arrivalAirport
+        .toLowerCase()
+        .includes(toLocation.airport?.name.toLowerCase() || "");
+
+    return matchFrom && matchTo;
+  });
+
+  setFilteredFlights(filtered);
+};
+
 
   // Sinon → afficher la liste des vols comme avant
   return (
@@ -148,16 +185,28 @@ export default function FlyNow() {
           48 hours.
         </p>
         <div className="flynow-search">
-          <input type="text" placeholder="From: Airport or City" />
-          <input type="text" placeholder="To: Airport or City" />
-          <button>Search</button>
+          <CitySearch
+            placeholder="From: Airport or City"
+            compareCity={toLocation?.city?.name || ""} // 🔹 passe le nom de la ville sélectionnée
+            value={fromValue}
+            onChange={setFromValue}
+            onSelect={(selection) => setFromLocation(selection)}
+          />
+          <CitySearch
+            placeholder="To: Airport or City"
+            compareCity={fromLocation?.city?.name || ""} // 🔹 passe le nom de la ville sélectionnée
+            value={toValue}
+            onChange={setToValue}
+            onSelect={(selection) => setToLocation(selection)}
+          />
+          <button onClick={handleSearch}>Search</button>
         </div>
       </div>
 
       <div className="flynow-cards">
-        {flights
-          .filter(flight => flight.seatsAvailable > 0)
-          .map(flight => (
+       {filteredFlights
+    .filter(flight => flight.seatsAvailable > 0)
+    .map(flight => (
             <div
               className="flynow-card"
               key={flight.id}
