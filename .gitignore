@@ -27,3 +27,4 @@ jet4us-backend/*.txt
 src/assets/videos/*.mp4
 .vercel
 .env*.local
+jet4us-backend/allCountries.txt

@@ -13,8 +13,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 5050;
-
 // MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("🚀 MongoDB Atlas connected"))
@@ -26,6 +24,15 @@ app.use("/api/airports", airportRoutes);
 app.use("/api/locations", locationRoutes);
 app.use("/api/flights", flightRoutes);
 
-app.listen(PORT, () =>
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
-);
+// PORT dynamique pour Vercel ou local
+const PORT = process.env.PORT || 5050;
+
+if (process.env.NODE_ENV !== "vercel") {
+  // local uniquement
+  app.listen(PORT, () =>
+    console.log(`🚀 Server running on http://localhost:${PORT}`)
+  );
+}
+
+// export pour Vercel
+export default app;
